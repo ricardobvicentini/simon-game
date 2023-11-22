@@ -46,9 +46,29 @@ body {
   background-color: yellow;
 }
 
-.pressed {
+/* .pressed {
   box-shadow: 0 0 20px white;
-  /* background-color: grey; */
   opacity: 0.5;
   scale: 1.05;
+} */
+
+.pressed-red {
+  box-shadow: 0 0 20px red;
+  border: 10px solid red;
+  opacity: 0.5;
+}
+.pressed-green {
+  box-shadow: 0 0 20px green;
+  border: 10px solid green;
+  opacity: 0.5;
+}
+.pressed-blue {
+  box-shadow: 0 0 20px blue;
+  border: 10px solid blue;
+  opacity: 0.5;
+}
+.pressed-yellow {
+  box-shadow: 0 0 20px yellow;
+  border: 10px solid yellow;
+  opacity: 0.5;
 }
