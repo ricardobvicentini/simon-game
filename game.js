@@ -5,6 +5,8 @@ let gamePattern = [];
 let userClickedPattern = [];
 let started = false;
 let level = 0;
+let startMsgInterval;
+let startMsgClick;
 
 /* $(document).on('keydown', (e) => {
   if (!started) {
@@ -15,24 +17,30 @@ let level = 0;
 });
  */
 
-$(document).on('keydown', (e) => {
+function displayStartMsg() {
+  startMsgInterval = setInterval(() => {
+    $('#level-title').text(`Press Start to Play`);
+  }, 2000);
+  startMsgClick = setInterval(() => {
+    $('#level-title').text(`Simon Game`);
+  }, 4000);
+}
+
+$(window).on('load', () => {
+  if (!started) {
+    displayStartMsg();
+  }
+});
+
+$('.start-btn').on('click', (e) => {
   if (!started) {
     $('#level-title').text(`Level ${level}`);
     nextSequence();
     started = true;
   }
+  clearInterval(startMsgInterval);
+  clearInterval(startMsgClick);
 });
-
-/* $(window).on('load', () => {
-  if (!started) {
-    setInterval(() => {
-      $('#level-title').text(`Click to play`);
-    }, 2000);
-    setInterval(() => {
-      $('#level-title').text(`Simon Game`);
-    }, 4000);
-  }
-}); */
 
 $('.btn').on('click', function () {
   const userChosenColour = $(this).attr('id');
@@ -60,7 +68,7 @@ function checkAnswer(currentLevel) {
     setTimeout(() => {
       $('body').removeClass('game-over');
     }, 200);
-    $('#level-title').text('Game Over, Press Any Key to Restart');
+    $('#level-title').text('Game Over! Press Start to Play');
     startOver();
   }
 }

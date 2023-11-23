@@ -17,12 +17,30 @@ body {
 }
 
 .btn {
-  margin: 25px;
-  display: inline-block;
   height: 200px;
   width: 200px;
+  margin: 25px;
+  display: inline-block;
   border: 10px solid black;
   border-radius: 20%;
+}
+
+.start-btn {
+  width: 100px;
+  height: 80px;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: inline-block;
+  border: 10px solid black;
+  border-radius: 20%;
+  cursor: pointer;
+  transition: color 200ms ease-in-out, scale 200ms ease-in-out;
+}
+
+.start-btn:hover {
+  background-color: aqua;
+  scale: 1.1;
+  font-weight: normal;
 }
 
 .game-over {
