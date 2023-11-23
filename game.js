@@ -6,6 +6,15 @@ let userClickedPattern = [];
 let started = false;
 let level = 0;
 
+/* $(document).on('keydown', (e) => {
+  if (!started) {
+    $('#level-title').text(`Level ${level}`);
+    nextSequence();
+    started = true;
+  }
+});
+ */
+
 $(document).on('keydown', (e) => {
   if (!started) {
     $('#level-title').text(`Level ${level}`);
@@ -13,6 +22,17 @@ $(document).on('keydown', (e) => {
     started = true;
   }
 });
+
+/* $(window).on('load', () => {
+  if (!started) {
+    setInterval(() => {
+      $('#level-title').text(`Click to play`);
+    }, 2000);
+    setInterval(() => {
+      $('#level-title').text(`Simon Game`);
+    }, 4000);
+  }
+}); */
 
 $('.btn').on('click', function () {
   const userChosenColour = $(this).attr('id');
