@@ -1,19 +1,24 @@
 body {
   text-align: center;
-  background-color: #011f3f;
+  height: 100svh;
+  /* background-color: #011f3f; */
+  background-image: linear-gradient(to bottom, #013a77, #011f3f);
+  overflow-y: hidden;
 }
 
 #level-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 3rem;
+  font-size: clamp(1.15rem, 4vw, 3rem);
   margin: 5%;
   color: #fef2bf;
 }
 
 .container {
   display: block;
-  width: 50%;
+  width: 70%;
   margin: auto;
+  padding: 3rem;
 }
 
 .btn {
@@ -89,4 +94,53 @@ body {
   box-shadow: 0 0 20px yellow;
   border: 10px solid yellow;
   opacity: 0.5;
+}
+
+@media screen and (width < 550px) {
+  #level-title {
+    margin-block: 10%;
+  }
+
+  .btn {
+    height: 90px;
+    width: 90px;
+    margin: 15px;
+    border: 5px solid black;
+  }
+
+  .start-btn {
+    width: 80px;
+    height: 60px;
+    border: 5px solid black;
+  }
+}
+
+@media screen and (width > 550px) and (width < 750px) {
+  .btn {
+    height: 100px;
+    width: 100px;
+    margin: 15px;
+    border: 5px solid black;
+  }
+
+  .start-btn {
+    width: 80px;
+    height: 60px;
+    border: 5px solid black;
+  }
+}
+
+@media screen and (width > 750px) and (width < 1000px) {
+  .btn {
+    height: 150px;
+    width: 150px;
+    margin: 15px;
+    border: 5px solid black;
+  }
+
+  .start-btn {
+    width: 80px;
+    height: 60px;
+    border: 5px solid black;
+  }
 }

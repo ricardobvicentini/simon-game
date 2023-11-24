@@ -20,10 +20,10 @@ let startMsgClick;
 function displayStartMsg() {
   startMsgInterval = setInterval(() => {
     $('#level-title').text(`Press Start to Play`);
-  }, 2000);
+  }, 3000);
   startMsgClick = setInterval(() => {
     $('#level-title').text(`Simon Game`);
-  }, 4000);
+  }, 6000);
 }
 
 $(window).on('load', () => {
