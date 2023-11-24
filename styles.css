@@ -96,6 +96,23 @@ body {
   opacity: 0.5;
 }
 
+.glow-title {
+  animation: glow 1500ms ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 0;
+    scale: 1;
+  }
+
+  50% {
+    text-shadow: 0 0 10px #fef2bf;
+    scale: 1.05;
+  }
+}
+
 @media screen and (width < 550px) {
   #level-title {
     margin-block: 10%;

@@ -20,8 +20,10 @@ let startMsgClick;
 function displayStartMsg() {
   startMsgInterval = setInterval(() => {
     $('#level-title').text(`Press Start to Play`);
+    $('#level-title').addClass(`glow-title`);
   }, 3000);
   startMsgClick = setInterval(() => {
+    $('#level-title').removeClass(`glow-title`);
     $('#level-title').text(`Simon Game`);
   }, 6000);
 }
@@ -38,6 +40,7 @@ $('.start-btn').on('click', (e) => {
     nextSequence();
     started = true;
   }
+  $('#level-title').removeClass(`glow-title`);
   clearInterval(startMsgInterval);
   clearInterval(startMsgClick);
 });
