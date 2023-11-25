@@ -40,7 +40,7 @@ $(document).on('click', () => {
   if ($('.score-board').hasClass('active')) scoreBoardOut();
 });
 
-$('.start-btn').on('click', (e) => {
+$('.start-btn').on('click', () => {
   if (!started) {
     $('#level-title').text(`Level ${level}`);
     nextSequence();
