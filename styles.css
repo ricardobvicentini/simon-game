@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  font-family: 'Press Start 2P', cursive;
   height: 100svh;
   /* background-color: #011f3f; */
   background-image: linear-gradient(to bottom, #013a77, #011f3f);
@@ -7,7 +8,6 @@ body {
 }
 
 #level-title {
-  font-family: 'Press Start 2P', cursive;
   font-size: 3rem;
   font-size: clamp(1.15rem, 4vw, 3rem);
   margin: 5%;
@@ -99,16 +99,27 @@ body {
 
 /* Score Board */
 .score-board {
-  border: 5px solid black;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 50%;
   height: 50%;
+  padding: 2rem 0 2rem 7rem;
   background-color: rgb(239, 239, 239);
+  border: 5px solid black;
+  border-radius: 10px;
   position: absolute;
   top: 50%;
   left: -100%;
   transform: translateY(-50%);
   animation: all 200ms ease-in-out;
+}
+
+.score-board > * {
+  border: 1px solid red;
+  width: 50%;
+  font-size: clamp(1rem, 3vw, 2rem);
 }
 
 /* Animation */
