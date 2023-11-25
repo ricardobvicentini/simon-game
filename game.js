@@ -7,6 +7,8 @@ let started = false;
 let level = 0;
 let startMsgInterval;
 let startMsgClick;
+let scores = [];
+let count = 0;
 
 /* $(document).on('keydown', (e) => {
   if (!started) {
@@ -83,6 +85,11 @@ function checkAnswer(currentLevel) {
       repeatSequence(gamePattern);
     }
   } else {
+    scores.push(level);
+    count++;
+    $('.score-board').append(
+      `<p>Score ${count}: ${scores[scores.length - 1] - 1}`
+    );
     playSound('wrong');
     $('body').addClass('game-over');
     setTimeout(() => {
