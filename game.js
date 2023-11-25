@@ -30,8 +30,12 @@ function displayStartMsg() {
 
 $(window).on('load', () => {
   if (!started) {
-    displayStartMsg();
+    /* displayStartMsg(); */
   }
+});
+
+$(document).on('click', () => {
+  if ($('.score-board').hasClass('active')) scoreBoardOut();
 });
 
 $('.start-btn').on('click', (e) => {
@@ -53,10 +57,23 @@ $('.btn').on('click', function () {
   checkAnswer(userClickedPattern.length - 1);
 });
 
+function scoreBoardIn() {
+  setTimeout(() => {
+    $('.score-board').addClass('active');
+    $('.score-board').animate({ left: '-10%' });
+  }, 800);
+}
+
+function scoreBoardOut() {
+  $('.score-board').removeClass('active');
+  $('.score-board').animate({ left: '-100%' });
+}
+
 function startOver() {
   started = false;
   level = 0;
   gamePattern = [];
+  scoreBoardIn();
 }
 
 function checkAnswer(currentLevel) {
