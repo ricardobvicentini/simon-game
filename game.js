@@ -8,7 +8,9 @@ let level = 0;
 let startMsgInterval;
 let startMsgClick;
 let scores = [];
+let highScore = [];
 let count = 0;
+let players = 3;
 
 /* $(document).on('keydown', (e) => {
   if (!started) {
@@ -85,11 +87,17 @@ function checkAnswer(currentLevel) {
       repeatSequence(gamePattern);
     }
   } else {
+    //* Score Board counting
     scores.push(level);
     count++;
     $('.score-board').append(
       `<p>Score ${count}: ${scores[scores.length - 1] - 1}`
     );
+    highScore.push(scores[scores.length - 1] - 1);
+
+    if (count === players)
+      $('.score-board').append(`<p>Highest score: ${Math.max(...highScore)}`);
+
     playSound('wrong');
     $('body').addClass('game-over');
     setTimeout(() => {

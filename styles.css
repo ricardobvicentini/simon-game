@@ -118,7 +118,7 @@ body {
 
 .score-board > * {
   border: 1px solid red;
-  width: 80%;
+  width: 90%;
   font-size: clamp(1rem, 3vw, 2rem);
 }
 
