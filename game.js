@@ -3,12 +3,12 @@
 const buttonColours = ['red', 'blue', 'green', 'yellow'];
 let gamePattern = [];
 let userClickedPattern = [];
-let started = false;
-let level = 0;
-let startMsgInterval;
-let startMsgClick;
 let scores = [];
 let highScore = [];
+let started = false;
+let startMsgInterval;
+let startMsgClick;
+let level = 0;
 let count = 0;
 let players = 2;
 
@@ -21,15 +21,27 @@ let players = 2;
 });
  */
 
+//* Functions
+
+function glowMsg(element) {
+  startMsgInterval = setInterval(() => {
+    $(element).addClass(`glow-title`);
+  }, 3000);
+  startMsgClick = setInterval(() => {
+    $(element).removeClass(`glow-title`);
+  }, 6000);
+}
+
 function displayStartMsg() {
   startMsgInterval = setInterval(() => {
     $('#level-title').text(`Press Start to Play`);
-    $('#level-title').addClass(`glow-title`);
+    /* $('#level-title').addClass(`glow-title`); */
   }, 3000);
   startMsgClick = setInterval(() => {
-    $('#level-title').removeClass(`glow-title`);
     $('#level-title').text(`Simon Game`);
+    /* $('#level-title').removeClass(`glow-title`); */
   }, 6000);
+  glowMsg('#level-title');
 }
 
 function retry() {
@@ -41,38 +53,8 @@ function retry() {
     if ($('.score-board').hasClass('active')) {
       scoreBoardOut();
     }
-    console.log(started);
   });
 }
-
-$(window).on('load', () => {
-  if (!started) {
-    /* displayStartMsg(); */
-  }
-});
-
-$(document).on('click', () => {
-  if ($('.score-board').hasClass('active')) scoreBoardOut();
-});
-
-$('.start-btn').on('click', () => {
-  if (!started) {
-    $('#level-title').text(`Level ${level}`);
-    nextSequence();
-    started = true;
-  }
-  $('#level-title').removeClass(`glow-title`);
-  clearInterval(startMsgInterval);
-  clearInterval(startMsgClick);
-});
-
-$('.btn').on('click', function () {
-  const userChosenColour = $(this).attr('id');
-  userClickedPattern.push(userChosenColour);
-  playSound(userChosenColour);
-  animatePress(userChosenColour);
-  checkAnswer(userClickedPattern.length - 1);
-});
 
 function scoreBoardIn() {
   setTimeout(() => {
@@ -113,6 +95,7 @@ function checkAnswer(currentLevel) {
         `<p>Highest score: ${Math.max(...highScore)}</p>`
       );
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
+      glowMsg('.retry-btn');
       retry();
     }
 
@@ -161,3 +144,33 @@ function animatePress(currentColour) {
     $(`#${currentColour}`).removeClass(`pressed-${currentColour}`);
   }, 100);
 }
+
+//* Events
+$(window).on('load', () => {
+  if (!started) {
+    /* displayStartMsg(); */
+  }
+});
+
+$(document).on('click', () => {
+  if ($('.score-board').hasClass('active')) scoreBoardOut();
+});
+
+$('.start-btn').on('click', () => {
+  if (!started) {
+    $('#level-title').text(`Level ${level}`);
+    nextSequence();
+    started = true;
+  }
+  $('#level-title').removeClass(`glow-title`);
+  clearInterval(startMsgInterval);
+  clearInterval(startMsgClick);
+});
+
+$('.btn').on('click', function () {
+  const userChosenColour = $(this).attr('id');
+  userClickedPattern.push(userChosenColour);
+  playSound(userChosenColour);
+  animatePress(userChosenColour);
+  checkAnswer(userClickedPattern.length - 1);
+});
