@@ -10,7 +10,7 @@ let startMsgClick;
 let scores = [];
 let highScore = [];
 let count = 0;
-let players = 3;
+let players = 2;
 
 /* $(document).on('keydown', (e) => {
   if (!started) {
@@ -30,6 +30,19 @@ function displayStartMsg() {
     $('#level-title').removeClass(`glow-title`);
     $('#level-title').text(`Simon Game`);
   }, 6000);
+}
+
+function retry() {
+  $('.retry-btn').on('click', () => {
+    $('.score-board').empty();
+    scores = [];
+    highScore = [];
+    count = 0;
+    if ($('.score-board').hasClass('active')) {
+      scoreBoardOut();
+    }
+    console.log(started);
+  });
 }
 
 $(window).on('load', () => {
@@ -91,12 +104,17 @@ function checkAnswer(currentLevel) {
     scores.push(level);
     count++;
     $('.score-board').append(
-      `<p>Score ${count}: ${scores[scores.length - 1] - 1}`
+      `<p>Score ${count}: ${scores[scores.length - 1] - 1}</p>`
     );
     highScore.push(scores[scores.length - 1] - 1);
 
-    if (count === players)
-      $('.score-board').append(`<p>Highest score: ${Math.max(...highScore)}`);
+    if (count === players) {
+      $('.score-board').append(
+        `<p>Highest score: ${Math.max(...highScore)}</p>`
+      );
+      $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
+      retry();
+    }
 
     playSound('wrong');
     $('body').addClass('game-over');

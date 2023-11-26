@@ -21,6 +21,11 @@ body {
   padding: 3rem;
 }
 
+.retry-btn {
+  font-family: inherit;
+  cursor: pointer;
+}
+
 .btn {
   height: 200px;
   width: 200px;
