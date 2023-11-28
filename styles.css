@@ -196,7 +196,7 @@ body {
 
 /* Animation */
 .glow-title {
-  animation: glow 1500ms ease-in-out infinite;
+  animation: glow 1380ms ease-in-out infinite;
 }
 
 /* Utility classes */

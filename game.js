@@ -22,26 +22,29 @@ let players = 2;
  */
 
 //* Functions
+function displayStartMsg(element) {
+  startMsgInterval = setInterval(() => {
+    if (!started) {
+      $(element).text('Press Start to Play');
+      $('#level-title').addClass(`glow-title`);
+    }
+  }, 2600);
+  startMsgClick = setInterval(() => {
+    if (!started) {
+      $(element).text('Simon Game');
+      $('#level-title').removeClass('glow-title');
+    }
+  }, 5200);
+  glowMsg(element);
+}
 
 function glowMsg(element) {
   startMsgInterval = setInterval(() => {
-    $(element).addClass(`glow-title`);
-  }, 3000);
+    $(element).addClass('glow-title');
+  }, 2600);
   startMsgClick = setInterval(() => {
-    $(element).removeClass(`glow-title`);
-  }, 6000);
-}
-
-function displayStartMsg() {
-  startMsgInterval = setInterval(() => {
-    $('#level-title').text(`Press Start to Play`);
-    /* $('#level-title').addClass(`glow-title`); */
-  }, 3000);
-  startMsgClick = setInterval(() => {
-    $('#level-title').text(`Simon Game`);
-    /* $('#level-title').removeClass(`glow-title`); */
-  }, 6000);
-  glowMsg('#level-title');
+    $(element).removeClass('glow-title');
+  }, 5200);
 }
 
 function retry() {
@@ -148,7 +151,7 @@ function animatePress(currentColour) {
 //* Events
 $(window).on('load', () => {
   if (!started) {
-    /* displayStartMsg(); */
+    displayStartMsg('#level-title');
   }
 });
 
@@ -162,10 +165,24 @@ $('.start-btn').on('click', () => {
     nextSequence();
     started = true;
   }
-  $('#level-title').removeClass(`glow-title`);
   clearInterval(startMsgInterval);
   clearInterval(startMsgClick);
+  $('#level-title').removeClass('glow-title');
 });
+
+/* $('.start-btn').on('click', () => {
+  if (!started) {
+    $('.overlay').removeClass('hidden');
+  }
+   if (!started) {
+    $('#level-title').text(`Level ${level}`);
+    nextSequence();
+    started = true;
+  }
+  $('#level-title').removeClass('glow-title');
+  clearInterval(startMsgInterval);
+  clearInterval(startMsgClick);
+}); */
 
 $('.btn').on('click', function () {
   const userChosenColour = $(this).attr('id');
