@@ -154,7 +154,6 @@ body {
   gap: 10%;
   font-size: clamp(1rem, 2vw, 2rem);
   & label {
-    border: 1px solid red;
     min-width: 100%;
     line-height: 1.5;
   }
@@ -164,8 +163,30 @@ body {
     font-family: 'Press Start 2P', cursive;
     text-align: center;
   }
+  .p-num-ok-btn {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    max-width: 3rem;
+    min-height: 2rem;
+  }
+}
 
-  .p-ok-btn {
+.players-name {
+  width: 50%;
+  height: 30%;
+  gap: 10%;
+  font-size: clamp(0.8rem, 2vw, 2rem);
+  & label {
+    min-width: 100%;
+    line-height: 1.5;
+  }
+  #p-name {
+    max-width: 80%;
+    min-height: 2rem;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+  }
+  .p-name-ok-btn {
     font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
     max-width: 3rem;
