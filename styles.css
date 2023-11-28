@@ -8,7 +8,6 @@ body {
 }
 
 #level-title {
-  font-size: 3rem;
   font-size: clamp(1.15rem, 4vw, 3rem);
   margin: 5%;
   color: #fef2bf;
@@ -127,9 +126,62 @@ body {
   font-size: clamp(1rem, 3vw, 2rem);
 }
 
+/*  Overlay - Modals */
+
+.overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inset: 0;
+  backdrop-filter: blur(10px);
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+  background-color: rgb(239, 239, 239);
+  border: 5px solid black;
+  border-radius: 10px;
+}
+
+.players-num {
+  width: 50%;
+  height: 30%;
+  gap: 10%;
+  font-size: clamp(1rem, 2vw, 2rem);
+  & label {
+    border: 1px solid red;
+    min-width: 100%;
+    line-height: 1.5;
+  }
+  #p-num {
+    max-width: 3rem;
+    min-height: 2rem;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+  }
+
+  .p-ok-btn {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    max-width: 3rem;
+    min-height: 2rem;
+  }
+}
+
 /* Animation */
 .glow-title {
   animation: glow 1500ms ease-in-out infinite;
+}
+
+/* Utility classes */
+
+.hidden {
+  display: none;
 }
 
 @keyframes glow {
