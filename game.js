@@ -6,6 +6,7 @@ let userClickedPattern = [];
 let scores = [];
 let highScore = [];
 let started = false;
+let displayMsgs = false;
 let startMsgInterval;
 let startMsgClick;
 let level = 0;
@@ -24,13 +25,13 @@ let players = 2;
 //* Functions
 function displayStartMsg(element) {
   startMsgInterval = setInterval(() => {
-    if (!started) {
+    if (!displayMsgs) {
       $(element).text('Press Start to Play');
       $('#level-title').addClass(`glow-title`);
     }
   }, 2600);
   startMsgClick = setInterval(() => {
-    if (!started) {
+    if (!displayMsgs) {
       $(element).text('Simon Game');
       $('#level-title').removeClass('glow-title');
     }
@@ -53,6 +54,7 @@ function retry() {
     scores = [];
     highScore = [];
     count = 0;
+    displayMsgs = false;
     if ($('.score-board').hasClass('active')) {
       scoreBoardOut();
     }
@@ -165,6 +167,7 @@ $('.start-btn').on('click', () => {
     nextSequence();
     started = true;
   }
+  displayMsgs = true;
   clearInterval(startMsgInterval);
   clearInterval(startMsgClick);
   $('#level-title').removeClass('glow-title');
