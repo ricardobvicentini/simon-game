@@ -7,6 +7,7 @@ let scores = [];
 let highScore = [];
 let started = false;
 let displayMsgs = false;
+let game = false;
 let startMsgInterval;
 let startMsgClick;
 let level = 0;
@@ -68,6 +69,7 @@ function retry() {
     count = 0;
     displayMsgs = false;
     started = false;
+    console.log(level);
     if ($('.score-board').hasClass('active')) {
       scoreBoardOut();
     }
@@ -87,7 +89,7 @@ function scoreBoardOut() {
 }
 
 function startOver() {
-  /* started = false; */
+  started = false;
   level = 0;
   gamePattern = [];
   scoreBoardIn();
@@ -120,6 +122,7 @@ function checkAnswer(currentLevel) {
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn');
       retry();
+      game = false;
     }
 
     playSound('wrong');
@@ -144,7 +147,7 @@ function repeatSequence(pattern) {
 
 function nextSequence() {
   userClickedPattern = [];
-
+  console.log(level);
   level++;
   $('#level-title').text(`Level ${level}`);
   setTimeout(() => {
@@ -176,7 +179,7 @@ $(window).on('load', () => {
 });
 
 $(document).on('click', () => {
-  if ($('.score-board').hasClass('active')) scoreBoardOut();
+  if ($('.score-board').hasClass('active') && game === true) scoreBoardOut();
 });
 
 /* $('.start-btn').on('click', () => {
@@ -196,30 +199,24 @@ $(document).on('click', () => {
   $('#level-title').removeClass('glow-title');
 }); */
 
+//* Fix here!!!!
+
 $('.start-btn').on('click', () => {
   displayMsgs = true;
   clearInterval(startMsgInterval);
   clearInterval(startMsgClick);
   $('#level-title').removeClass('glow-title');
-  if (!started) {
+  if (!game) {
     $('.overlay').removeClass('hidden');
     $('.p-num-ok-btn').on('click', () => {
       players = Number.parseInt($('#p-num').val());
       $('.overlay').addClass('hidden');
-      started = true;
+      game = true;
       $('#p-num').val('');
-      console.log(players);
       $('#level-title').removeClass('glow-title');
-      $('#level-title').text(`Level ${level}`);
-      if (!document.startViewTransition) {
-        nextSequence();
-      }
-      document.startViewTransition(() => {
-        nextSequence();
-      });
     });
   }
-  if (started) {
+  if (game) {
     if (!document.startViewTransition) {
       nextSequence();
     }
