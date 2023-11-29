@@ -11,7 +11,7 @@ let startMsgInterval;
 let startMsgClick;
 let level = 0;
 let count = 0;
-let players = 2;
+let players;
 
 /* $(document).on('keydown', (e) => {
   if (!started) {
@@ -35,7 +35,7 @@ function displayStartMsg(element) {
         $('#level-title').addClass(`glow-title`);
       });
     }
-  }, 2300);
+  }, 2500);
   startMsgClick = setInterval(() => {
     if (!displayMsgs) {
       if (!document.startViewTransition) {
@@ -47,17 +47,17 @@ function displayStartMsg(element) {
         $('#level-title').removeClass('glow-title');
       });
     }
-  }, 4600);
+  }, 5000);
   glowMsg(element);
 }
 
 function glowMsg(element) {
   startMsgInterval = setInterval(() => {
     $(element).addClass('glow-title');
-  }, 2300);
+  }, 2500);
   startMsgClick = setInterval(() => {
     $(element).removeClass('glow-title');
-  }, 4600);
+  }, 5000);
 }
 
 function retry() {
@@ -67,6 +67,7 @@ function retry() {
     highScore = [];
     count = 0;
     displayMsgs = false;
+    started = false;
     if ($('.score-board').hasClass('active')) {
       scoreBoardOut();
     }
@@ -86,7 +87,7 @@ function scoreBoardOut() {
 }
 
 function startOver() {
-  started = false;
+  /* started = false; */
   level = 0;
   gamePattern = [];
   scoreBoardIn();
@@ -178,7 +179,7 @@ $(document).on('click', () => {
   if ($('.score-board').hasClass('active')) scoreBoardOut();
 });
 
-$('.start-btn').on('click', () => {
+/* $('.start-btn').on('click', () => {
   if (!started) {
     $('#level-title').text(`Level ${level}`);
     if (!document.startViewTransition) {
@@ -193,21 +194,40 @@ $('.start-btn').on('click', () => {
   clearInterval(startMsgInterval);
   clearInterval(startMsgClick);
   $('#level-title').removeClass('glow-title');
-});
+}); */
 
-/* $('.start-btn').on('click', () => {
-  if (!started) {
-    $('.overlay').removeClass('hidden');
-  }
-   if (!started) {
-    $('#level-title').text(`Level ${level}`);
-    nextSequence();
-    started = true;
-  }
-  $('#level-title').removeClass('glow-title');
+$('.start-btn').on('click', () => {
+  displayMsgs = true;
   clearInterval(startMsgInterval);
   clearInterval(startMsgClick);
-}); */
+  $('#level-title').removeClass('glow-title');
+  if (!started) {
+    $('.overlay').removeClass('hidden');
+    $('.p-num-ok-btn').on('click', () => {
+      players = Number.parseInt($('#p-num').val());
+      $('.overlay').addClass('hidden');
+      started = true;
+      $('#p-num').val('');
+      console.log(players);
+      $('#level-title').removeClass('glow-title');
+      $('#level-title').text(`Level ${level}`);
+      if (!document.startViewTransition) {
+        nextSequence();
+      }
+      document.startViewTransition(() => {
+        nextSequence();
+      });
+    });
+  }
+  if (started) {
+    if (!document.startViewTransition) {
+      nextSequence();
+    }
+    document.startViewTransition(() => {
+      nextSequence();
+    });
+  }
+});
 
 $('.btn').on('click', function () {
   const userChosenColour = $(this).attr('id');
