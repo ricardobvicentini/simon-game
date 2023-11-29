@@ -266,3 +266,7 @@ body {
     border: 5px solid black;
   }
 }
+
+::view-transition-group(root) {
+  animation-duration: 400ms;
+}

@@ -26,26 +26,38 @@ let players = 2;
 function displayStartMsg(element) {
   startMsgInterval = setInterval(() => {
     if (!displayMsgs) {
-      $(element).text('Press Start to Play');
-      $('#level-title').addClass(`glow-title`);
+      if (!document.startViewTransition) {
+        $(element).text('Press Start to Play');
+        $('#level-title').addClass(`glow-title`);
+      }
+      document.startViewTransition(() => {
+        $(element).text('Press Start to Play');
+        $('#level-title').addClass(`glow-title`);
+      });
     }
-  }, 2600);
+  }, 2300);
   startMsgClick = setInterval(() => {
     if (!displayMsgs) {
-      $(element).text('Simon Game');
-      $('#level-title').removeClass('glow-title');
+      if (!document.startViewTransition) {
+        $(element).text('Simon Game');
+        $('#level-title').removeClass('glow-title');
+      }
+      document.startViewTransition(() => {
+        $(element).text('Simon Game');
+        $('#level-title').removeClass('glow-title');
+      });
     }
-  }, 5200);
+  }, 4600);
   glowMsg(element);
 }
 
 function glowMsg(element) {
   startMsgInterval = setInterval(() => {
     $(element).addClass('glow-title');
-  }, 2600);
+  }, 2300);
   startMsgClick = setInterval(() => {
     $(element).removeClass('glow-title');
-  }, 5200);
+  }, 4600);
 }
 
 function retry() {
@@ -83,7 +95,12 @@ function startOver() {
 function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     if (userClickedPattern.length === gamePattern.length) {
-      nextSequence();
+      if (!document.startViewTransition) {
+        nextSequence();
+      }
+      document.startViewTransition(() => {
+        nextSequence();
+      });
       repeatSequence(gamePattern);
     }
   } else {
@@ -164,7 +181,12 @@ $(document).on('click', () => {
 $('.start-btn').on('click', () => {
   if (!started) {
     $('#level-title').text(`Level ${level}`);
-    nextSequence();
+    if (!document.startViewTransition) {
+      nextSequence();
+    }
+    document.startViewTransition(() => {
+      nextSequence();
+    });
     started = true;
   }
   displayMsgs = true;
