@@ -54,31 +54,29 @@ body {
 
 .game-over {
   /* background-color: red; */
-  background-image: linear-gradient(to bottom, red, rgb(150, 2, 2));
+  background-image: linear-gradient(to bottom, red, #960202);
   opacity: 0.8;
 }
 
 .red {
-  background-color: red;
+  background-color: #960202;
+  background-image: radial-gradient(#d59a9a, #960202);
 }
 
 .green {
-  background-color: green;
+  background-color: #008000;
+  background-image: radial-gradient(#80c080, #008000);
 }
 
 .blue {
-  background-color: blue;
+  background-color: #0000ff;
+  background-image: radial-gradient(#8080ff, #0000ff);
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: #e6e600;
+  background-image: radial-gradient(#ffffb3, #e6e600);
 }
-
-/* .pressed {
-  box-shadow: 0 0 20px white;
-  opacity: 0.5;
-  scale: 1.05;
-} */
 
 .pressed-red {
   box-shadow: 0 0 20px red;
