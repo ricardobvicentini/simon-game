@@ -202,6 +202,10 @@ body {
   animation: glow 1380ms ease-in-out infinite;
 }
 
+.glow-btn {
+  animation: glowBtn 1380ms ease-in-out infinite;
+}
+
 @keyframes glow {
   0%,
   100% {
@@ -212,6 +216,19 @@ body {
   50% {
     text-shadow: 0 0 10px #fef2bf;
     scale: 1.05;
+  }
+}
+
+@keyframes glowBtn {
+  0%,
+  100% {
+    scale: 1;
+  }
+
+  50% {
+    scale: 1.05;
+    font-weight: bold;
+    background-color: aqua;
   }
 }
 

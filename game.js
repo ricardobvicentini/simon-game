@@ -12,7 +12,7 @@ let startMsgInterval;
 let startMsgClick;
 let level = 0;
 let count = 0;
-let players;
+let players = 0;
 console.log(players);
 
 /* $(document).on('keydown', (e) => {
@@ -62,23 +62,6 @@ function glowMsg(element) {
   }, 5000);
 }
 
-function retry() {
-  $('.retry-btn').on('click', () => {
-    $('.score-board').empty();
-    scores = [];
-    highScore = [];
-    count = 0;
-    displayMsgs = false;
-    started = false;
-    game = true;
-    players = undefined;
-    console.log(players);
-    if ($('.score-board').hasClass('active')) {
-      scoreBoardOut();
-    }
-  });
-}
-
 function scoreBoardIn() {
   setTimeout(() => {
     $('.score-board').addClass('active');
@@ -124,7 +107,9 @@ function checkAnswer(currentLevel) {
       );
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn');
-      retry();
+      $('.retry-btn').on('click', () => {
+        location.reload(true);
+      });
     }
 
     playSound('wrong');
@@ -180,7 +165,8 @@ $(window).on('load', () => {
 });
 
 $(document).on('click', () => {
-  if ($('.score-board').hasClass('active')) scoreBoardOut();
+  if ($('.score-board').hasClass('active') && count !== players)
+    scoreBoardOut();
 });
 
 /* $('.start-btn').on('click', () => {
@@ -203,6 +189,7 @@ $(document).on('click', () => {
 //* Fix here!!!!
 
 $('.start-btn').on('click', () => {
+  $('.start-btn').removeClass('glow-btn');
   displayMsgs = true;
   clearInterval(startMsgInterval);
   clearInterval(startMsgClick);
@@ -216,10 +203,10 @@ $('.start-btn').on('click', () => {
       started = true;
       $('#p-num').val('');
       $('#level-title').removeClass('glow-title');
-      console.log(players);
+      $('.start-btn').addClass('glow-btn');
     });
   }
-  if (players > 0) {
+  if (!game) {
     if (!document.startViewTransition) {
       nextSequence();
     }
