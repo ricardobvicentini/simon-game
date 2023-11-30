@@ -7,12 +7,13 @@ let scores = [];
 let highScore = [];
 let started = false;
 let displayMsgs = false;
-let game = false;
+let game = true;
 let startMsgInterval;
 let startMsgClick;
 let level = 0;
 let count = 0;
 let players;
+console.log(players);
 
 /* $(document).on('keydown', (e) => {
   if (!started) {
@@ -69,7 +70,9 @@ function retry() {
     count = 0;
     displayMsgs = false;
     started = false;
-    console.log(level);
+    game = true;
+    players = undefined;
+    console.log(players);
     if ($('.score-board').hasClass('active')) {
       scoreBoardOut();
     }
@@ -122,7 +125,6 @@ function checkAnswer(currentLevel) {
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn');
       retry();
-      game = false;
     }
 
     playSound('wrong');
@@ -147,7 +149,6 @@ function repeatSequence(pattern) {
 
 function nextSequence() {
   userClickedPattern = [];
-  console.log(level);
   level++;
   $('#level-title').text(`Level ${level}`);
   setTimeout(() => {
@@ -179,7 +180,7 @@ $(window).on('load', () => {
 });
 
 $(document).on('click', () => {
-  if ($('.score-board').hasClass('active') && game === true) scoreBoardOut();
+  if ($('.score-board').hasClass('active')) scoreBoardOut();
 });
 
 /* $('.start-btn').on('click', () => {
@@ -206,17 +207,19 @@ $('.start-btn').on('click', () => {
   clearInterval(startMsgInterval);
   clearInterval(startMsgClick);
   $('#level-title').removeClass('glow-title');
-  if (!game) {
+  if (game) {
     $('.overlay').removeClass('hidden');
     $('.p-num-ok-btn').on('click', () => {
       players = Number.parseInt($('#p-num').val());
       $('.overlay').addClass('hidden');
-      game = true;
+      game = false;
+      started = true;
       $('#p-num').val('');
       $('#level-title').removeClass('glow-title');
+      console.log(players);
     });
   }
-  if (game) {
+  if (players > 0) {
     if (!document.startViewTransition) {
       nextSequence();
     }
