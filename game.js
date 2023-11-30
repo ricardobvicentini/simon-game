@@ -25,7 +25,7 @@ console.log(players);
  */
 
 //* Functions
-function displayStartMsg(element) {
+function displayStartMsg(element, t1, t2) {
   startMsgInterval = setInterval(() => {
     if (!displayMsgs) {
       if (!document.startViewTransition) {
@@ -37,7 +37,7 @@ function displayStartMsg(element) {
         $('#level-title').addClass(`glow-title`);
       });
     }
-  }, 2500);
+  }, t1);
   startMsgClick = setInterval(() => {
     if (!displayMsgs) {
       if (!document.startViewTransition) {
@@ -49,17 +49,17 @@ function displayStartMsg(element) {
         $('#level-title').removeClass('glow-title');
       });
     }
-  }, 5000);
-  glowMsg(element);
+  }, t2);
+  glowMsg(element, 2500, 5000);
 }
 
-function glowMsg(element) {
+function glowMsg(element, t1, t2) {
   startMsgInterval = setInterval(() => {
     $(element).addClass('glow-title');
-  }, 2500);
+  }, t1);
   startMsgClick = setInterval(() => {
     $(element).removeClass('glow-title');
-  }, 5000);
+  }, t2);
 }
 
 function scoreBoardIn() {
@@ -97,7 +97,7 @@ function checkAnswer(currentLevel) {
     scores.push(level);
     count++;
     $('.score-board').append(
-      `<p>Score ${count}: ${scores[scores.length - 1] - 1}</p>`
+      `<p>Player ${count}: ${scores[scores.length - 1] - 1}</p>`
     );
     highScore.push(scores[scores.length - 1] - 1);
 
@@ -106,7 +106,7 @@ function checkAnswer(currentLevel) {
         `<p>Highest score: ${Math.max(...highScore)}</p>`
       );
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
-      glowMsg('.retry-btn');
+      glowMsg('.retry-btn', 1000, 5000);
       $('.retry-btn').on('click', () => {
         location.reload(true);
       });
@@ -160,7 +160,7 @@ function animatePress(currentColour) {
 //* Events
 $(window).on('load', () => {
   if (!started) {
-    displayStartMsg('#level-title');
+    displayStartMsg('#level-title', 2400, 4800);
   }
 });
 
