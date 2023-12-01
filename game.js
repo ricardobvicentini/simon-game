@@ -192,7 +192,7 @@ function repeatAppendEl(num) {
     $('.p-name-ok-btn').before(
       `<div><span>P${
         i + 1
-      }:</span><input type="text" id="p-name" maxlength="20" autocomplete="off" /></div>`
+      }:</span><input type="text" id="p-name${i}" maxlength="20" autocomplete="off" /></div>`
     );
   }
 }
