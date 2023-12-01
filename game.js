@@ -185,8 +185,6 @@ $(document).on('click', () => {
   $('#level-title').removeClass('glow-title');
 }); */
 
-//* Fix here!!!!
-
 function repeatAppendEl(num) {
   for (let i = 0; i < num; i++) {
     $('.p-name-ok-btn').before(
@@ -197,17 +195,14 @@ function repeatAppendEl(num) {
   }
 }
 
-$('.start-btn').on('click', () => {
-  $('.start-btn').removeClass('glow-btn');
-  $('#level-title').removeClass('glow-title');
-  displayMsgs = true;
-  clearInterval(startMsgInterval);
-  clearInterval(startMsgClick);
-  $('#level-title').removeClass('glow-title');
-  if (game) {
-    $('.overlay').removeClass('hidden');
-    // Event 1
-    $('.p-num-ok-btn').on('click', () => {
+function displayModals() {
+  $('.overlay').removeClass('hidden');
+
+  // Event 1
+  $('.p-num-ok-btn').on('click', () => {
+    if (!$('#p-num').val()) $('#p-num').css('border-color', 'red');
+    else {
+      $('#p-num').css('border-color', 'black');
       players = Number.parseInt($('#p-num').val());
       $('#p-num').val('');
       $('.players-num').addClass('hidden');
@@ -218,8 +213,21 @@ $('.start-btn').on('click', () => {
       /* $('.start-btn').addClass('glow-btn'); */
       /* $('.overlay').addClass('hidden'); */
       /* game = false;
-      started = true; */
-    });
+        started = true; */
+    }
+  });
+}
+
+//* Fix here!!!!
+$('.start-btn').on('click', () => {
+  $('.start-btn').removeClass('glow-btn');
+  $('#level-title').removeClass('glow-title');
+  displayMsgs = true;
+  clearInterval(startMsgInterval);
+  clearInterval(startMsgClick);
+  $('#level-title').removeClass('glow-title');
+  if (game) {
+    displayModals();
   }
   if (!game) {
     if (!document.startViewTransition) {
