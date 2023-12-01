@@ -13,7 +13,6 @@ let startMsgClick;
 let level = 0;
 let count = 0;
 let players = 0;
-console.log(players);
 
 /* $(document).on('keydown', (e) => {
   if (!started) {
@@ -188,22 +187,38 @@ $(document).on('click', () => {
 
 //* Fix here!!!!
 
+function repeatAppendEl(num) {
+  for (let i = 0; i < num; i++) {
+    $('.p-name-ok-btn').before(
+      `<div><span>P${
+        i + 1
+      }:</span><input type="text" id="p-name" maxlength="20" autocomplete="off" /></div>`
+    );
+  }
+}
+
 $('.start-btn').on('click', () => {
   $('.start-btn').removeClass('glow-btn');
+  $('#level-title').removeClass('glow-title');
   displayMsgs = true;
   clearInterval(startMsgInterval);
   clearInterval(startMsgClick);
   $('#level-title').removeClass('glow-title');
   if (game) {
     $('.overlay').removeClass('hidden');
+    // Event 1
     $('.p-num-ok-btn').on('click', () => {
       players = Number.parseInt($('#p-num').val());
-      $('.overlay').addClass('hidden');
-      game = false;
-      started = true;
       $('#p-num').val('');
-      $('#level-title').removeClass('glow-title');
-      $('.start-btn').addClass('glow-btn');
+      $('.players-num').addClass('hidden');
+
+      $('.players-name').removeClass('hidden');
+      repeatAppendEl(players);
+
+      /* $('.start-btn').addClass('glow-btn'); */
+      /* $('.overlay').addClass('hidden'); */
+      /* game = false;
+      started = true; */
     });
   }
   if (!game) {
