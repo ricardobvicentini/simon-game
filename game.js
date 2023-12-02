@@ -13,6 +13,8 @@ let startMsgClick;
 let level = 0;
 let count = 0;
 let players = 0;
+let playersName = [];
+console.log(playersName);
 
 /* $(document).on('keydown', (e) => {
   if (!started) {
@@ -188,22 +190,21 @@ $(document).on('click', () => {
 function repeatAppendEl(num) {
   for (let i = 0; i < num; i++) {
     $('.p-name-ok-btn').before(
-      `<div><span>P${
+      `<div class="name-input-container"><span>P${
         i + 1
-      }:</span><input type="text" id="p-name${i}" maxlength="20" autocomplete="off" /></div>`
+      }:</span><input class="name-input" type="text" id="p-name${i}" maxlength="20" autocomplete="off" /></div>`
     );
   }
 }
 
 function displayModals() {
   $('.overlay').removeClass('hidden');
-
   // Event 1
   $('.p-num-ok-btn').on('click', () => {
     if (!$('#p-num').val()) $('#p-num').css('border-color', 'red');
     else {
       $('#p-num').css('border-color', 'black');
-      players = Number.parseInt($('#p-num').val());
+      players = $('#p-num').val();
       $('#p-num').val('');
       $('.players-num').addClass('hidden');
 
@@ -215,6 +216,13 @@ function displayModals() {
       /* game = false;
         started = true; */
     }
+
+    // Event 2
+    $('.p-name-ok-btn').on('click', () => {
+      $('.name-input').each((input) => {
+        console.log(input.val());
+      });
+    });
   });
 }
 
