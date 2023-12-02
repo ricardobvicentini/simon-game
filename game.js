@@ -210,18 +210,23 @@ function displayModals() {
 
       $('.players-name').removeClass('hidden');
       repeatAppendEl(players);
-
-      /* $('.start-btn').addClass('glow-btn'); */
-      /* $('.overlay').addClass('hidden'); */
-      /* game = false;
-        started = true; */
     }
 
     // Event 2
     $('.p-name-ok-btn').on('click', () => {
-      $('.name-input').each((input) => {
-        console.log(input.val());
-      });
+      if (!$('.name-input').val()) $('.name-input').css('border-color', 'red');
+      else {
+        $('.name-input').css('border-color', 'black');
+        $('.name-input').each((i, input) => {
+          playersName.push(input.value);
+        });
+
+        $('.start-btn').addClass('glow-btn');
+        $('.overlay').addClass('hidden');
+        $('.players-name').addClass('hidden');
+        game = false;
+        started = true;
+      }
     });
   });
 }
