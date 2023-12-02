@@ -190,9 +190,8 @@ $(document).on('click', () => {
 function repeatAppendEl(num) {
   for (let i = 0; i < num; i++) {
     $('.p-name-ok-btn').before(
-      `<div class="name-input-container"><span>P${
         i + 1
-      }:</span><input class="name-input" type="text" id="p-name${i}" maxlength="20" autocomplete="off" /></div>`
+      }:</span><input class="p-name" type="text" maxlength="20" autocomplete="off" /></div>`
     );
   }
 }
@@ -214,11 +213,13 @@ function displayModals() {
 
     // Event 2
     $('.p-name-ok-btn').on('click', () => {
-      if (!$('.name-input').val()) $('.name-input').css('border-color', 'red');
+      if (!$('.p-name').val()) $('.p-name').css('border-color', 'red');
       else {
         $('.name-input').css('border-color', 'black');
-        $('.name-input').each((i, input) => {
-          playersName.push(input.value);
+        $('.p-name').css('border-color', 'black');
+        $('.p-name').each((i, input) => {
+          const name = input.value[0].toUpperCase() + input.value.slice(1, -1);
+          playersName.push(name);
         });
 
         $('.start-btn').addClass('glow-btn');
