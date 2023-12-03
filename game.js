@@ -12,7 +12,7 @@ let startMsgInterval;
 let startMsgClick;
 let level = 0;
 let count = 0;
-let players = 0;
+let players;
 let playersName = [];
 
 /* $(document).on('keydown', (e) => {
@@ -82,6 +82,7 @@ function startOver() {
 }
 
 function checkAnswer(currentLevel) {
+  players = $('#p-num').val();
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     if (userClickedPattern.length === gamePattern.length) {
       if (!document.startViewTransition) {
@@ -101,7 +102,7 @@ function checkAnswer(currentLevel) {
     );
     highScore.push(scores[scores.length - 1] - 1);
 
-    if (count === players) {
+    if (count === playersName.length) {
       $('.score-board').append(
         `<p>Highest score: ${Math.max(...highScore)}</p>`
       );
@@ -190,7 +191,6 @@ function displayModals() {
         $('.p-name').each((i, input) => {
           const name = input.value[0].toUpperCase() + input.value.slice(1);
           playersName.push(name);
-          console.log(playersName);
         });
 
         $('.start-btn').addClass('glow-btn');
