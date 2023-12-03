@@ -14,7 +14,6 @@ let level = 0;
 let count = 0;
 let players = 0;
 let playersName = [];
-console.log(playersName);
 
 /* $(document).on('keydown', (e) => {
   if (!started) {
@@ -98,7 +97,7 @@ function checkAnswer(currentLevel) {
     scores.push(level);
     count++;
     $('.score-board').append(
-      `<p>Player ${count}: ${scores[scores.length - 1] - 1}</p>`
+      `<p>${playersName[count - 1]}: ${scores[scores.length - 1] - 1}</p>`
     );
     highScore.push(scores[scores.length - 1] - 1);
 
@@ -158,35 +157,6 @@ function animatePress(currentColour) {
   }, 100);
 }
 
-//* Events
-$(window).on('load', () => {
-  if (!started) {
-    /* displayStartMsg('#level-title', 2400, 4800); */
-  }
-});
-
-$(document).on('click', () => {
-  if ($('.score-board').hasClass('active') && count !== players)
-    scoreBoardOut();
-});
-
-/* $('.start-btn').on('click', () => {
-  if (!started) {
-    $('#level-title').text(`Level ${level}`);
-    if (!document.startViewTransition) {
-      nextSequence();
-    }
-    document.startViewTransition(() => {
-      nextSequence();
-    });
-    started = true;
-  }
-  displayMsgs = true;
-  clearInterval(startMsgInterval);
-  clearInterval(startMsgClick);
-  $('#level-title').removeClass('glow-title');
-}); */
-
 function repeatAppendEl(num) {
   for (let i = 0; i < num; i++) {
     $('.p-name-ok-btn').before(
@@ -218,8 +188,9 @@ function displayModals() {
       else {
         $('.p-name').css('border-color', 'black');
         $('.p-name').each((i, input) => {
-          const name = input.value[0].toUpperCase() + input.value.slice(1, -1);
+          const name = input.value[0].toUpperCase() + input.value.slice(1);
           playersName.push(name);
+          console.log(playersName);
         });
 
         $('.start-btn').addClass('glow-btn');
@@ -231,6 +202,35 @@ function displayModals() {
     });
   });
 }
+
+//* Events
+$(window).on('load', () => {
+  if (!started) {
+    /* displayStartMsg('#level-title', 2400, 4800); */
+  }
+});
+
+$(document).on('click', () => {
+  if ($('.score-board').hasClass('active') && count !== players)
+    scoreBoardOut();
+});
+
+/* $('.start-btn').on('click', () => {
+  if (!started) {
+    $('#level-title').text(`Level ${level}`);
+    if (!document.startViewTransition) {
+      nextSequence();
+    }
+    document.startViewTransition(() => {
+      nextSequence();
+    });
+    started = true;
+  }
+  displayMsgs = true;
+  clearInterval(startMsgInterval);
+  clearInterval(startMsgClick);
+  $('#level-title').removeClass('glow-title');
+}); */
 
 //* Fix here!!!!
 $('.start-btn').on('click', () => {
