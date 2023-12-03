@@ -181,12 +181,11 @@ body {
     min-width: 100%;
     line-height: 1.5;
   }
-  & div > span {
-    vertical-align: sub;
+  & div {
+    max-width: 90%;
   }
-  #p-name {
-    max-width: 80%;
-    padding-block: 2%;
+  .p-name {
+    max-width: 70%;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
   }

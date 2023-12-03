@@ -161,7 +161,7 @@ function animatePress(currentColour) {
 //* Events
 $(window).on('load', () => {
   if (!started) {
-    displayStartMsg('#level-title', 2400, 4800);
+    /* displayStartMsg('#level-title', 2400, 4800); */
   }
 });
 
@@ -190,6 +190,7 @@ $(document).on('click', () => {
 function repeatAppendEl(num) {
   for (let i = 0; i < num; i++) {
     $('.p-name-ok-btn').before(
+      `<div><span>P${
         i + 1
       }:</span><input class="p-name" type="text" maxlength="20" autocomplete="off" /></div>`
     );
@@ -215,7 +216,6 @@ function displayModals() {
     $('.p-name-ok-btn').on('click', () => {
       if (!$('.p-name').val()) $('.p-name').css('border-color', 'red');
       else {
-        $('.name-input').css('border-color', 'black');
         $('.p-name').css('border-color', 'black');
         $('.p-name').each((i, input) => {
           const name = input.value[0].toUpperCase() + input.value.slice(1, -1);
