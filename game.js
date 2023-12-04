@@ -173,6 +173,7 @@ function repeatAppendEl(num) {
 function displayModals() {
   $('.overlay').removeClass('hidden');
   // Event 1
+  $('#p-num').focus();
   $('.p-num-ok-btn').on('click', () => {
     if (!$('#p-num').val()) $('#p-num').css('border-color', 'red');
     else {
@@ -183,6 +184,7 @@ function displayModals() {
 
       $('.players-name').removeClass('hidden');
       repeatAppendEl(players);
+      $('.p-name').first().focus();
     }
 
     // Event 2
