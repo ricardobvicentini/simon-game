@@ -103,8 +103,10 @@ function checkAnswer(currentLevel) {
     highScore.push(scores[scores.length - 1] - 1);
 
     if (count === playersName.length) {
+      const highestScore = Math.max(...highScore);
+      const highestScoreindex = highScore.indexOf(highestScore);
       $('.score-board').append(
-        `<p>Highest score: ${Math.max(...highScore)}</p>`
+        `<p>Highest score (${playersName[highestScoreindex]}): ${highestScore}</p>`
       );
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn', 1000, 5000);
@@ -136,7 +138,7 @@ function repeatSequence(pattern) {
 function nextSequence() {
   userClickedPattern = [];
   level++;
-  $('#level-title').text(`Level ${level}`);
+  $('#level-title').text(`${playersName[count]} - Level ${level}`);
   setTimeout(() => {
     const randomNumber = Math.floor(Math.random() * 4);
     const randomChosenColour = buttonColours[randomNumber];
