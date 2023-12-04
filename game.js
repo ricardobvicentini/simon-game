@@ -170,6 +170,7 @@ function repeatAppendEl(num) {
   }
 }
 
+//* Fix score (draw) and input border
 function displayModals() {
   $('.overlay').removeClass('hidden');
   // Event 1
@@ -188,10 +189,17 @@ function displayModals() {
     }
 
     // Event 2
+    $('.p-name').on('blur', () => {
+      $('.p-name').css('border-color', 'black');
+    });
+
+    // Event 3
     $('.p-name-ok-btn').on('click', () => {
-      if (!$('.p-name').val()) $('.p-name').css('border-color', 'red');
+      const anyEmpty = $('.p-name').is((i, input) => {
+        return !input.value;
+      });
+      if (anyEmpty) $('.p-name').css('border-color', 'red');
       else {
-        $('.p-name').css('border-color', 'black');
         $('.p-name').each((i, input) => {
           const name = input.value[0].toUpperCase() + input.value.slice(1);
           playersName.push(name);
@@ -236,7 +244,6 @@ $(document).on('click', () => {
   $('#level-title').removeClass('glow-title');
 }); */
 
-//* Fix here!!!!
 $('.start-btn').on('click', () => {
   $('.start-btn').removeClass('glow-btn');
   $('#level-title').removeClass('glow-title');
