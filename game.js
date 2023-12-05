@@ -199,7 +199,7 @@ function displayModals() {
 
     // Event 2
     $('.p-name').on('blur', () => {
-      $('.p-name').css('border-color', 'black');
+      $('.p-name').css({ 'border-color': 'black', 'border-width': '1px' });
     });
 
     // Event 3
