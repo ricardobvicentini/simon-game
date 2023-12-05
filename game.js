@@ -102,12 +102,21 @@ function checkAnswer(currentLevel) {
     );
     highScore.push(scores[scores.length - 1] - 1);
 
+    console.log('Scores:', scores);
+
     if (count === playersName.length) {
       const highestScore = Math.max(...highScore);
       const highestScoreindex = highScore.indexOf(highestScore);
-      $('.score-board').append(
-        `<p>Highest score (${playersName[highestScoreindex]}): ${highestScore}</p>`
-      );
+
+      let draw = scores.every((el) => el - 1 === highestScore);
+
+      if (draw) {
+        $('.score-board').append(`<p>Draw: ${highestScore}</p>`);
+      } else {
+        $('.score-board').append(
+          `<p>Highest score (${playersName[highestScoreindex]}): ${highestScore}</p>`
+        );
+      }
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn', 1000, 5000);
       $('.retry-btn').on('click', () => {
@@ -170,7 +179,7 @@ function repeatAppendEl(num) {
   }
 }
 
-//* Fix score (draw) and input border
+//* Fix input border
 function displayModals() {
   $('.overlay').removeClass('hidden');
   // Event 1
