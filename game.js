@@ -79,6 +79,7 @@ function startOver() {
   level = 0;
   gamePattern = [];
   scoreBoardIn();
+  if (count !== playersName.length) $('.start-btn').addClass('glow-btn');
 }
 
 function checkAnswer(currentLevel) {
@@ -101,8 +102,6 @@ function checkAnswer(currentLevel) {
       `<p>${playersName[count - 1]}: ${scores[scores.length - 1] - 1}</p>`
     );
     highScore.push(scores[scores.length - 1] - 1);
-
-    console.log('Scores:', scores);
 
     if (count === playersName.length) {
       const highestScore = Math.max(...highScore);
@@ -215,7 +214,7 @@ function displayModals() {
           playersName.push(name);
         });
 
-        /* $('.start-btn').addClass('glow-btn'); */
+        /* $('.start-btn').removeClass('glow-btn'); */
         $('.overlay').addClass('hidden');
         $('.players-name').addClass('hidden');
         game = false;
@@ -230,7 +229,7 @@ function displayModals() {
 //* Events
 $(window).on('load', () => {
   if (!started) {
-    /* displayStartMsg('#level-title', 2400, 4800); */
+    displayStartMsg('#level-title', 2400, 4800);
   }
 });
 
