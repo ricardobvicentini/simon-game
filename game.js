@@ -210,15 +210,18 @@ function displayModals() {
       if (anyEmpty) $('.p-name').css('border-color', 'red');
       else {
         $('.p-name').each((i, input) => {
-          const name = input.value[0].toUpperCase() + input.value.slice(1);
+          const name =
+            input.value[0].toUpperCase() + input.value.slice(1).toLowerCase();
           playersName.push(name);
         });
 
-        $('.start-btn').addClass('glow-btn');
+        /* $('.start-btn').addClass('glow-btn'); */
         $('.overlay').addClass('hidden');
         $('.players-name').addClass('hidden');
         game = false;
         started = true;
+
+        if (started) nextSequence();
       }
     });
   });
