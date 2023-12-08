@@ -37,6 +37,8 @@ body {
 .start-btn {
   width: 100px;
   height: 80px;
+  font-family: inherit;
+  font-size: clamp(0.5rem, 1vw, 1rem);
   text-transform: uppercase;
   font-weight: bold;
   display: inline-block;
@@ -140,7 +142,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2%;
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(1rem, 2vw, 3rem);
+  padding: 5%;
   background-color: rgb(239, 239, 239);
   border: 5px solid black;
   border-radius: 10px;
@@ -153,7 +157,6 @@ body {
   width: 50%;
   height: 30%;
   gap: 10%;
-  font-size: clamp(1rem, 2vw, 2rem);
   & label {
     min-width: 100%;
     line-height: 1.5;
@@ -176,17 +179,19 @@ body {
   max-width: 60%;
   height: 30%;
   gap: 10%;
-  font-size: clamp(0.8rem, 2vw, 2rem);
   & label {
     min-width: 100%;
     line-height: 1.5;
   }
   & div {
     max-width: 90%;
+    display: flex;
+    align-items: center;
   }
   .p-name {
     max-width: 70%;
-    font-family: 'Press Start 2P', cursive;
+    min-height: 1.25rem;
+
     text-align: center;
   }
   .p-name-ok-btn {
