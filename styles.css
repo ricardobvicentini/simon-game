@@ -30,7 +30,7 @@ body {
   width: 200px;
   margin: 25px;
   display: inline-block;
-  border: 10px solid black;
+  border: 5px solid black;
   border-radius: 20%;
 }
 
@@ -40,7 +40,7 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   display: inline-block;
-  border: 10px solid black;
+  border: 5px solid black;
   border-radius: 20%;
   cursor: pointer;
   transition: color 200ms ease-in-out, scale 200ms ease-in-out;
@@ -252,9 +252,21 @@ body {
   display: none;
 }
 
-@media screen and (width < 550px) {
+@media screen and (width <= 400px) {
+  .container {
+    width: 90%;
+    padding: 3rem 0;
+  }
+}
+
+@media screen and (width <= 550px) {
   #level-title {
     margin-block: 10%;
+  }
+
+  .container {
+    width: 90%;
+    padding: 3rem 0;
   }
 
   .btn {
@@ -277,7 +289,7 @@ body {
   }
 }
 
-@media screen and (width > 550px) and (width < 750px) {
+@media screen and (width > 550px) and (width <= 750px) {
   .btn {
     height: 100px;
     width: 100px;
