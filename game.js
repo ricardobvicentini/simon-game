@@ -95,7 +95,7 @@ function checkAnswer(currentLevel) {
       repeatSequence(gamePattern);
     }
   } else {
-    //* Score Board counting
+    //* Scoreboard counting
     scores.push(level);
     count++;
     $('.score-board').append(
@@ -178,7 +178,6 @@ function repeatAppendEl(num) {
   }
 }
 
-//* Fix input border
 function displayModals() {
   $('.overlay').removeClass('hidden');
   // Event 1

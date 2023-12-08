@@ -7,6 +7,7 @@
 } */
 
 body {
+  position: relative;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
   height: 100svh;
@@ -16,7 +17,7 @@ body {
 }
 
 #level-title {
-  font-size: clamp(1.15rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 4vw, 3rem);
   margin: 5%;
   color: #fef2bf;
 }
@@ -26,11 +27,6 @@ body {
   width: 70%;
   margin: auto;
   padding: 3rem;
-}
-
-.retry-btn {
-  font-family: inherit;
-  cursor: pointer;
 }
 
 .btn {
@@ -109,7 +105,7 @@ body {
   opacity: 0.5;
 }
 
-/* Score Board */
+/* Scoreboard */
 .score-board {
   display: flex;
   flex-direction: column;
@@ -132,6 +128,11 @@ body {
   border: 1px solid red;
   width: 90%;
   font-size: clamp(1rem, 3vw, 2rem);
+}
+
+.retry-btn {
+  font-family: inherit;
+  cursor: pointer;
 }
 
 /*  Overlay - Modals */
@@ -210,6 +211,16 @@ body {
   }
 }
 
+.leader-board {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: rgb(239, 239, 239);
+}
+
 /* Animation */
 .glow-title {
   animation: glow 1380ms ease-in-out infinite;
@@ -283,8 +294,8 @@ body {
   }
 
   .btn {
-    height: 90px;
-    width: 90px;
+    height: 100px;
+    width: 100px;
     margin: 15px;
     border: 5px solid black;
   }
@@ -304,8 +315,8 @@ body {
 
 @media screen and (width > 550px) and (width <= 750px) {
   .btn {
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     margin: 15px;
     border: 5px solid black;
   }
