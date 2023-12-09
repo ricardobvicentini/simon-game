@@ -54,6 +54,7 @@ body {
 
 .start-btn:hover {
   background-color: aqua;
+  box-shadow: 0 0 5px aqua;
   scale: 1.1;
   font-weight: normal;
 }
@@ -135,6 +136,33 @@ body {
   cursor: pointer;
 }
 
+/* Leaderboard */
+.leader-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  min-height: 20%;
+  padding: 1rem 1rem 3.5rem 1rem;
+  background-color: rgb(239, 239, 239);
+  border: 5px solid black;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  /* bottom: 0%; */
+  bottom: -100%;
+  transform: translateX(-50%);
+  animation: all 200ms ease-in-out;
+}
+
+.leader-board > * {
+  border: 1px solid red;
+  width: 90%;
+  font-size: clamp(1rem, 3vw, 2rem);
+  font-family: 'Press Start 2P', cursive;
+}
+
 /*  Overlay - Modals */
 
 .overlay {
@@ -211,7 +239,7 @@ body {
   }
 }
 
-.leader-board {
+.leader-icon-container {
   position: absolute;
   bottom: 10%;
   left: 50%;
@@ -219,6 +247,17 @@ body {
   text-align: center;
   font-size: clamp(1.5rem, 4vw, 3rem);
   color: rgb(239, 239, 239);
+}
+
+#trophy-btn {
+  cursor: pointer;
+}
+
+#trophy-btn:hover {
+  color: aqua;
+  text-shadow: 0 0 5px aqua;
+  scale: 1.1;
+  font-weight: normal;
 }
 
 /* Animation */
@@ -253,6 +292,7 @@ body {
     scale: 1.05;
     font-weight: bold;
     background-color: aqua;
+    box-shadow: 0 0 5px aqua;
   }
 }
 

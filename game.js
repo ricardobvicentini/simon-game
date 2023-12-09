@@ -281,3 +281,7 @@ $('.btn').on('click', function () {
   animatePress(userChosenColour);
   checkAnswer(userClickedPattern.length - 1);
 });
+
+$('#trophy-btn').on('click', () => {
+  $('.leader-board').css('transform', 'translateY(0%)');
+});
