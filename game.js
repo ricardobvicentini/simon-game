@@ -282,6 +282,11 @@ $('.btn').on('click', function () {
   checkAnswer(userClickedPattern.length - 1);
 });
 
+// Leaderscore btns
 $('#trophy-btn').on('click', () => {
-  $('.leader-board').css('transform', 'translateY(0%)');
+  $('.leader-board').css('bottom', '0%');
+});
+
+$('#close-btn').on('click', () => {
+  $('.leader-board').css('bottom', '-100%');
 });
