@@ -16,7 +16,10 @@ let players;
 let playersName = [];
 let leaderBoard = [];
 
-console.log(leaderBoard);
+const storedLeaderBoard = JSON.parse(localStorage.getItem('leaderBoard'));
+if (storedLeaderBoard) {
+  leaderBoard = storedLeaderBoard;
+}
 
 //* Functions
 function displayStartMsg(element, t1, t2) {
@@ -69,25 +72,19 @@ function scoreBoardOut() {
 }
 
 // Leaderboard
-
 function addScore(arr) {
-  let sorted = arr.sort((a, b) => b - a);
+  let sorted = arr.sort((a, b) => b.score - a.score);
   for (let i = 0; i < sorted.length; i++) {
-    sorted[i] =
-      i === 1
-        ? `${'🥇'} ${sorted[i]}`
+    sorted[i].formattedScore =
+      i === 0
+        ? `${'🥇'}`
+        : i === 1
+        ? `${'🥈'}`
         : i === 2
-        ? `${'🥈'} ${sorted[i]}`
-        : `${'🥉'} ${sorted[i]}`;
-  }
-  for (let i = 3; i < sorted.length; i++) {
-    sorted[i] = `${'🎗️'} ${sorted[i]}`;
+        ? `${'🥉'}`
+        : `${'🎗️'}`;
   }
   return sorted;
-}
-
-function leaderBoardFeed(data) {
-  $('h5').after(`<p>${data}</p>`);
 }
 
 function startOver() {
@@ -122,8 +119,11 @@ function checkAnswer(currentLevel) {
     if (count === playersName.length) {
       const highestScore = Math.max(...highScore);
       const highestScoreindex = highScore.indexOf(highestScore);
-      leaderBoard.push(highestScore);
-      console.log(leaderBoard);
+
+      leaderBoard.push({
+        playerName: playersName[highestScoreindex],
+        score: highestScore,
+      });
 
       let draw;
       if (playersName.length > 1) {
@@ -137,13 +137,11 @@ function checkAnswer(currentLevel) {
           `<p>Highest score (${playersName[highestScoreindex]}): ${highestScore}</p>`
         );
 
-        // Leaderboard function
-
-        addScore(leaderBoard);
-        console.log(leaderBoard);
-        leaderBoardFeed(leaderBoard);
-        $('.leader-board').css('bottom', '0%');
+        // Leaderboard
+        leaderBoard = addScore(leaderBoard);
+        setLocalStorage();
       }
+
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn', 1000, 5000);
       $('.retry-btn').on('click', () => {
@@ -240,8 +238,6 @@ function displayModals() {
             input.value[0].toUpperCase() + input.value.slice(1).toLowerCase();
           playersName.push(name);
         });
-
-        /* $('.start-btn').removeClass('glow-btn'); */
         $('.overlay').addClass('hidden');
         $('.players-name').addClass('hidden');
         game = false;
@@ -256,7 +252,7 @@ function displayModals() {
 //* Events
 $(window).on('load', () => {
   if (!started) {
-    /* displayStartMsg('#level-title', 2500, 5000); */
+    displayStartMsg('#level-title', 2500, 5000);
   }
 });
 
@@ -264,23 +260,6 @@ $(document).on('click', () => {
   if ($('.score-board').hasClass('active') && count !== playersName.length)
     scoreBoardOut();
 });
-
-/* $('.start-btn').on('click', () => {
-  if (!started) {
-    $('#level-title').text(`Level ${level}`);
-    if (!document.startViewTransition) {
-      nextSequence();
-    }
-    document.startViewTransition(() => {
-      nextSequence();
-    });
-    started = true;
-  }
-  displayMsgs = true;
-  clearInterval(startMsgInterval);
-  clearInterval(startMsgClick);
-  $('#level-title').removeClass('glow-title');
-}); */
 
 $('.start-btn').on('click', () => {
   $('.start-btn').removeClass('glow-btn');
@@ -312,9 +291,31 @@ $('.btn').on('click', function () {
 
 // Leaderboard btns
 $('#trophy-btn').on('click', () => {
-  $('.leader-board').css('bottom', '0%');
+  if (count !== playersName.length || playersName.length === 0)
+    $('.leader-board').css('bottom', '0%');
 });
 
 $('#close-btn').on('click', () => {
   $('.leader-board').css('bottom', '-100%');
 });
+
+//* Local storage
+const setLocalStorage = () => {
+  localStorage.setItem('leaderBoard', JSON.stringify(leaderBoard));
+};
+
+const getLocalStorage = () => {
+  const info = JSON.parse(localStorage.getItem('leaderBoard'));
+  if (!info) return;
+  leaderBoard = info;
+  leaderBoard.reverse().forEach((el) => {
+    $('h5').after(`<p>${el.formattedScore} ${el.playerName}: ${el.score}</p>`);
+  });
+};
+
+getLocalStorage();
+
+const reset = () => {
+  localStorage.removeItem('leaderBoard');
+  location.reload();
+};
