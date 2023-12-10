@@ -14,9 +14,7 @@ let level = 0;
 let count = 0;
 let players;
 let playersName = [];
-let leaderBoard = {
-  position: '',
-};
+let leaderBoard = [];
 
 console.log(leaderBoard);
 
@@ -70,11 +68,26 @@ function scoreBoardOut() {
   $('.score-board').animate({ left: '-100%' });
 }
 
-function leaderBoardFeed(data) {
-  for (const i in leaderBoard) {
-    leaderBoard[i] = data;
-    $('h5').after(leaderBoard[i]);
+// Leaderboard
+
+function addScore(arr) {
+  let sorted = arr.sort((a, b) => b - a);
+  for (let i = 0; i < sorted.length; i++) {
+    sorted[i] =
+      i === 1
+        ? `${'🥇'} ${sorted[i]}`
+        : i === 2
+        ? `${'🥈'} ${sorted[i]}`
+        : `${'🥉'} ${sorted[i]}`;
   }
+  for (let i = 3; i < sorted.length; i++) {
+    sorted[i] = `${'🎗️'} ${sorted[i]}`;
+  }
+  return sorted;
+}
+
+function leaderBoardFeed(data) {
+  $('h5').after(`<p>${data}</p>`);
 }
 
 function startOver() {
@@ -109,6 +122,8 @@ function checkAnswer(currentLevel) {
     if (count === playersName.length) {
       const highestScore = Math.max(...highScore);
       const highestScoreindex = highScore.indexOf(highestScore);
+      leaderBoard.push(highestScore);
+      console.log(leaderBoard);
 
       let draw;
       if (playersName.length > 1) {
@@ -123,10 +138,11 @@ function checkAnswer(currentLevel) {
         );
 
         // Leaderboard function
-        leaderBoardFeed(
-          `<p>${playersName[highestScoreindex]} - ${highestScore}</p>`
-        );
-        /* $('.leader-board').css('bottom', '0%'); */
+
+        addScore(leaderBoard);
+        console.log(leaderBoard);
+        leaderBoardFeed(leaderBoard);
+        $('.leader-board').css('bottom', '0%');
       }
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn', 1000, 5000);
