@@ -14,15 +14,11 @@ let level = 0;
 let count = 0;
 let players;
 let playersName = [];
+let leaderBoard = {
+  position: '',
+};
 
-/* $(document).on('keydown', (e) => {
-  if (!started) {
-    $('#level-title').text(`Level ${level}`);
-    nextSequence();
-    started = true;
-  }
-});
- */
+console.log(leaderBoard);
 
 //* Functions
 function displayStartMsg(element, t1, t2) {
@@ -74,6 +70,14 @@ function scoreBoardOut() {
   $('.score-board').animate({ left: '-100%' });
 }
 
+function leaderBoardFeed(data) {
+  for (const i in leaderBoard) {
+    leaderBoard[i] = data;
+    $('h5').after(leaderBoard[i]);
+  }
+  /* `<p>${playersName[highestScoreindex]} - ${highestScore}</p>` */
+}
+
 function startOver() {
   started = false;
   level = 0;
@@ -96,10 +100,6 @@ function checkAnswer(currentLevel) {
     }
   } else {
     //* Scoreboard counting
-    console.log('Count:', count);
-    console.log('Players:', playersName);
-    console.log(playersName.length);
-
     scores.push(level);
     count++;
     $('.score-board').append(
@@ -123,10 +123,12 @@ function checkAnswer(currentLevel) {
           `<p>Highest score (${playersName[highestScoreindex]}): ${highestScore}</p>`
         );
 
-        // Leaderboard
-        $('.leader-board').append(
-          `<p>${playersName[highestScoreindex]}: ${highestScore}</p>`
+        // Leaderboard function
+        leaderBoardFeed(
+          `<p>${playersName[highestScoreindex]} - ${highestScore}</p>`
         );
+        console.log(leaderBoard);
+        $('.leader-board').css('bottom', '0%');
       }
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn', 1000, 5000);
@@ -294,7 +296,7 @@ $('.btn').on('click', function () {
   checkAnswer(userClickedPattern.length - 1);
 });
 
-// Leaderscore btns
+// Leaderboard btns
 $('#trophy-btn').on('click', () => {
   $('.leader-board').css('bottom', '0%');
 });

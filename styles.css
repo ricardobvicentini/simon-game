@@ -140,7 +140,7 @@ body {
 .leader-board {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 60%;
   min-height: 20%;
@@ -154,6 +154,9 @@ body {
   bottom: -100%;
   transform: translateX(-50%);
   transition: all 300ms ease-in-out;
+  & h5 {
+    margin: 0 auto;
+  }
 }
 
 .leader-board > * {
