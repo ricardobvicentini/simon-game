@@ -75,7 +75,6 @@ function leaderBoardFeed(data) {
     leaderBoard[i] = data;
     $('h5').after(leaderBoard[i]);
   }
-  /* `<p>${playersName[highestScoreindex]} - ${highestScore}</p>` */
 }
 
 function startOver() {
@@ -127,8 +126,7 @@ function checkAnswer(currentLevel) {
         leaderBoardFeed(
           `<p>${playersName[highestScoreindex]} - ${highestScore}</p>`
         );
-        console.log(leaderBoard);
-        $('.leader-board').css('bottom', '0%');
+        /* $('.leader-board').css('bottom', '0%'); */
       }
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn', 1000, 5000);
