@@ -115,6 +115,11 @@ function checkAnswer(currentLevel) {
         $('.score-board').append(
           `<p>Highest score (${playersName[highestScoreindex]}): ${highestScore}</p>`
         );
+
+        // Leaderboard
+        $('.leader-board').append(
+          `<p>${playersName[highestScoreindex]}: ${highestScore}</p>`
+        );
       }
       $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
       glowMsg('.retry-btn', 1000, 5000);
