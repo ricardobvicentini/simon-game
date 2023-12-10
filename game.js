@@ -96,6 +96,10 @@ function checkAnswer(currentLevel) {
     }
   } else {
     //* Scoreboard counting
+    console.log('Count:', count);
+    console.log('Players:', playersName);
+    console.log(playersName.length);
+
     scores.push(level);
     count++;
     $('.score-board').append(
@@ -107,7 +111,10 @@ function checkAnswer(currentLevel) {
       const highestScore = Math.max(...highScore);
       const highestScoreindex = highScore.indexOf(highestScore);
 
-      let draw = scores.every((el) => el - 1 === highestScore);
+      let draw;
+      if (playersName.length > 1) {
+        draw = scores.every((el) => el - 1 === highestScore);
+      }
 
       if (draw) {
         $('.score-board').append(`<p>Draw: ${highestScore}</p>`);
@@ -238,7 +245,7 @@ $(window).on('load', () => {
 });
 
 $(document).on('click', () => {
-  if ($('.score-board').hasClass('active') && count !== players)
+  if ($('.score-board').hasClass('active') && count !== playersName.length)
     scoreBoardOut();
 });
 
