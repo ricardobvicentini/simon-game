@@ -278,6 +278,12 @@ body {
   cursor: pointer;
 }
 
+.y-n-btn-container button {
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  min-height: 2rem;
+}
+
 /* Animation */
 .glow-title {
   animation: glow 1380ms ease-in-out infinite;
