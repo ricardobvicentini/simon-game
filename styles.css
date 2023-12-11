@@ -7,9 +7,10 @@
 } */
 
 body {
-  position: relative;
+  /* position: relative; */
   text-align: center;
   font-family: 'Press Start 2P', cursive;
+  height: 100vh;
   height: 100svh;
   /* background-color: #011f3f; */
   background-image: linear-gradient(to bottom, #013a77, #011f3f);
@@ -126,7 +127,6 @@ body {
 }
 
 .score-board > * {
-  border: 1px solid red;
   width: 90%;
   font-size: clamp(1rem, 3vw, 2rem);
 }
@@ -156,7 +156,7 @@ body {
   transform: translateX(-50%);
   transition: all 300ms ease-in-out;
   & h5 {
-    margin: 0 auto;
+    margin: 0 auto 1rem;
   }
   & i {
     font-size: 1.8rem;
@@ -165,7 +165,6 @@ body {
 }
 
 .leader-board > * {
-  /* border: 1px solid red; */
   width: 90%;
   font-size: clamp(1rem, 3vw, 2rem);
   font-family: 'Press Start 2P', cursive;
@@ -276,6 +275,13 @@ body {
 
 #close-btn {
   cursor: pointer;
+}
+
+.confirm-reset {
+  justify-content: space-evenly;
+  line-height: 1.5;
+  width: 50%;
+  height: 30%;
 }
 
 .y-n-btn-container button {

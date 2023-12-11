@@ -206,6 +206,7 @@ function repeatAppendEl(num) {
 
 function displayModals() {
   $('.overlay').removeClass('hidden');
+  $('.players-num').removeClass('hidden');
   // Event 1
   $('#p-num').focus();
   $('.p-num-ok-btn').on('click', () => {
@@ -292,11 +293,27 @@ $('.btn').on('click', function () {
 // Leaderboard btns
 $('#trophy-btn').on('click', () => {
   if (count !== playersName.length || playersName.length === 0)
-    $('.leader-board').css('bottom', '0%');
+    $('.leader-board').css('bottom', '-5%');
 });
 
 $('#close-btn').on('click', () => {
   $('.leader-board').css('bottom', '-100%');
+});
+
+$('#reset-btn').on('click', () => {
+  $('.overlay').removeClass('hidden');
+  $('.confirm-reset').removeClass('hidden');
+});
+
+$('.n-btn').on('click', () => {
+  $('.overlay').addClass('hidden');
+  $('.confirm-reset').addClass('hidden');
+});
+
+$('.y-btn').on('click', () => {
+  $('.overlay').addClass('hidden');
+  $('.confirm-reset').addClass('hidden');
+  reset();
 });
 
 //* Local storage
