@@ -17,7 +17,7 @@ body {
 }
 
 #level-title {
-  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-size: clamp(1rem, 4vw, 3rem);
   margin: 5%;
   color: #fef2bf;
 }
@@ -138,6 +138,7 @@ body {
 
 /* Leaderboard */
 .leader-board {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -157,13 +158,23 @@ body {
   & h5 {
     margin: 0 auto;
   }
+  & i {
+    font-size: 1.8rem;
+    width: 20%;
+  }
 }
 
 .leader-board > * {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 90%;
   font-size: clamp(1rem, 3vw, 2rem);
   font-family: 'Press Start 2P', cursive;
+}
+
+#reset-btn {
+  position: absolute;
+  bottom: 3.5rem;
+  right: 1rem;
 }
 
 /*  Overlay - Modals */
