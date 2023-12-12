@@ -21,8 +21,8 @@ if (storedLeaderBoard) {
   leaderBoard = storedLeaderBoard;
 }
 
-//* Functions
-// Start message
+//* Functions / Funções
+// Start message / Mensagem inicial
 function displayStartMsg(element, t1, t2) {
   startMsgInterval = setInterval(() => {
     if (!displayMsgs) {
@@ -51,7 +51,7 @@ function displayStartMsg(element, t1, t2) {
   glowMsg(element, 2500, 5000);
 }
 
-// Glow function
+// Glow function / Função brilhar texto
 function glowMsg(element, t1, t2) {
   startMsgInterval = setInterval(() => {
     $(element).addClass('glow-title');
@@ -61,7 +61,7 @@ function glowMsg(element, t1, t2) {
   }, t2);
 }
 
-// Scoreboard slide in and out
+// Scoreboard slide in and out / Deslizar placar
 function scoreBoardIn() {
   setTimeout(() => {
     $('.score-board').addClass('active');
@@ -74,7 +74,7 @@ function scoreBoardOut() {
   $('.score-board').animate({ left: '-100%' });
 }
 
-// Leaderboard
+// Leaderboard / Placar dos melhores
 function addScore(arr) {
   let sorted = arr.sort((a, b) => b.score - a.score);
   for (let i = 0; i < sorted.length; i++) {
@@ -90,7 +90,7 @@ function addScore(arr) {
   return sorted;
 }
 
-// Reset game
+// Reset game / Reiniciar jogo
 function startOver() {
   started = false;
   level = 0;
@@ -99,7 +99,7 @@ function startOver() {
   if (count !== playersName.length) $('.start-btn').addClass('glow-btn');
 }
 
-// Answer checking
+// Answer checking / Verificação da resposta
 function checkAnswer(currentLevel) {
   players = $('#p-num').val();
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
@@ -113,7 +113,7 @@ function checkAnswer(currentLevel) {
       repeatSequence(gamePattern);
     }
   } else {
-    // Scoreboard counting
+    // Scoreboard counting / Contagem do placar
     scores.push(level);
     count++;
     $('.score-board').append(
@@ -142,7 +142,7 @@ function checkAnswer(currentLevel) {
           `<p>Highest score (${playersName[highestScoreindex]}): ${highestScore}</p>`
         );
 
-        // Leaderboard
+        // Leaderboard / Placar dos melhores
         leaderBoard = addScore(leaderBoard);
         setLocalStorage();
       }
@@ -164,7 +164,7 @@ function checkAnswer(currentLevel) {
   }
 }
 
-// Repeat sequence
+// Repeat sequence / Repetir sequência
 function repeatSequence(pattern) {
   pattern.forEach((colour, i) =>
     setTimeout(() => {
@@ -175,7 +175,7 @@ function repeatSequence(pattern) {
   );
 }
 
-// Next sequence
+// Next sequence / Próxima sequência
 function nextSequence() {
   userClickedPattern = [];
   level++;
@@ -190,12 +190,12 @@ function nextSequence() {
   }, 1000 * (gamePattern.length + 1));
 }
 
-// Sound function
+// Sound function / Função para tocar sons
 function playSound(name) {
   return new Audio(`sounds/${name}.mp3`).play();
 }
 
-// Button color (pressed)
+// Button color (pressed) / Acender botões (pressionados)
 function animatePress(currentColour) {
   $(`#${currentColour}`).addClass(`pressed-${currentColour}`);
   setTimeout(() => {
@@ -203,7 +203,7 @@ function animatePress(currentColour) {
   }, 100);
 }
 
-// Add number of players
+// Add inputs for players' name / Adicionar inputs para nomes dos jogadores
 function repeatAppendEl(num) {
   for (let i = 0; i < num; i++) {
     $('.p-name-ok-btn').before(
@@ -214,7 +214,7 @@ function repeatAppendEl(num) {
   }
 }
 
-// Display modals
+// Display modals / Exibir modais
 function displayModals() {
   $('.overlay').removeClass('hidden');
   $('.players-num').removeClass('hidden');
@@ -301,7 +301,7 @@ $('.btn').on('click', function () {
   checkAnswer(userClickedPattern.length - 1);
 });
 
-// Leaderboard btns
+// Leaderboard btns / Botões do Placar dos Melhores
 $('#trophy-btn').on('click', () => {
   if (count !== playersName.length || playersName.length === 0)
     $('.leader-board').css('bottom', '-5%');
