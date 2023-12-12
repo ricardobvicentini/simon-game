@@ -22,6 +22,7 @@ if (storedLeaderBoard) {
 }
 
 //* Functions
+// Start message
 function displayStartMsg(element, t1, t2) {
   startMsgInterval = setInterval(() => {
     if (!displayMsgs) {
@@ -50,6 +51,7 @@ function displayStartMsg(element, t1, t2) {
   glowMsg(element, 2500, 5000);
 }
 
+// Glow function
 function glowMsg(element, t1, t2) {
   startMsgInterval = setInterval(() => {
     $(element).addClass('glow-title');
@@ -59,6 +61,7 @@ function glowMsg(element, t1, t2) {
   }, t2);
 }
 
+// Scoreboard slide in and out
 function scoreBoardIn() {
   setTimeout(() => {
     $('.score-board').addClass('active');
@@ -87,6 +90,7 @@ function addScore(arr) {
   return sorted;
 }
 
+// Reset game
 function startOver() {
   started = false;
   level = 0;
@@ -95,6 +99,7 @@ function startOver() {
   if (count !== playersName.length) $('.start-btn').addClass('glow-btn');
 }
 
+// Answer checking
 function checkAnswer(currentLevel) {
   players = $('#p-num').val();
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
@@ -108,7 +113,7 @@ function checkAnswer(currentLevel) {
       repeatSequence(gamePattern);
     }
   } else {
-    //* Scoreboard counting
+    // Scoreboard counting
     scores.push(level);
     count++;
     $('.score-board').append(
@@ -159,6 +164,7 @@ function checkAnswer(currentLevel) {
   }
 }
 
+// Repeat sequence
 function repeatSequence(pattern) {
   pattern.forEach((colour, i) =>
     setTimeout(() => {
@@ -169,6 +175,7 @@ function repeatSequence(pattern) {
   );
 }
 
+// Next sequence
 function nextSequence() {
   userClickedPattern = [];
   level++;
@@ -183,10 +190,12 @@ function nextSequence() {
   }, 1000 * (gamePattern.length + 1));
 }
 
+// Sound function
 function playSound(name) {
   return new Audio(`sounds/${name}.mp3`).play();
 }
 
+// Button color (pressed)
 function animatePress(currentColour) {
   $(`#${currentColour}`).addClass(`pressed-${currentColour}`);
   setTimeout(() => {
@@ -194,6 +203,7 @@ function animatePress(currentColour) {
   }, 100);
 }
 
+// Add number of players
 function repeatAppendEl(num) {
   for (let i = 0; i < num; i++) {
     $('.p-name-ok-btn').before(
@@ -204,6 +214,7 @@ function repeatAppendEl(num) {
   }
 }
 
+// Display modals
 function displayModals() {
   $('.overlay').removeClass('hidden');
   $('.players-num').removeClass('hidden');
@@ -253,7 +264,7 @@ function displayModals() {
 //* Events
 $(window).on('load', () => {
   if (!started) {
-    /* displayStartMsg('#level-title', 2500, 5000); */
+    displayStartMsg('#level-title', 2500, 5000);
   }
 });
 
