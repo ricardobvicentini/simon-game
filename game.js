@@ -6,10 +6,12 @@ let userClickedPattern = [];
 let scores = [];
 let highScore = [];
 let started = false;
-let displayMsgs = false;
 let game = true;
+let displayMsgs = false;
 let startMsgInterval;
 let startMsgClick;
+let time = 15;
+let timeOver = false;
 let level = 0;
 let count = 0;
 let players;
@@ -108,22 +110,6 @@ function startOver() {
   gamePattern = [];
   scoreBoardIn();
   if (count !== playersName.length) $('.start-btn').addClass('glow-btn');
-}
-
-// Timer function / Função contagem regressiva
-let time = 1;
-function timer(t) {
-  time += t;
-  const intervalId = setInterval(() => {
-    time--;
-    if (time > 0) {
-      $('.timer-display').text(`${time}s`);
-    } else {
-      clearInterval(intervalId);
-      $('.timer-display').text(`Time's up!`);
-      wrongAnswer();
-    }
-  }, 1000);
 }
 
 // Answer checking / Verificação da resposta
@@ -278,7 +264,6 @@ function displayModals() {
 
         if (started) {
           nextSequence();
-          timer(5);
         }
       }
     });
