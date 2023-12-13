@@ -99,6 +99,18 @@ function startOver() {
   if (count !== playersName.length) $('.start-btn').addClass('glow-btn');
 }
 
+// Timer function / Função contagem regressiva
+
+function timer(t) {
+  let time = t;
+  setInterval(() => {
+    time--;
+    if (time > 0) {
+      $('.timer-container').append(`<p>${time}</p>`);
+    }
+  }, 1000);
+}
+
 // Answer checking / Verificação da resposta
 function checkAnswer(currentLevel) {
   players = $('#p-num').val();
@@ -255,7 +267,10 @@ function displayModals() {
         game = false;
         started = true;
 
-        if (started) nextSequence();
+        if (started) {
+          nextSequence();
+          timer(15);
+        }
       }
     });
   });
@@ -264,7 +279,7 @@ function displayModals() {
 //* Events
 $(window).on('load', () => {
   if (!started) {
-    displayStartMsg('#level-title', 2500, 5000);
+    /* displayStartMsg('#level-title', 2500, 5000); */
   }
 });
 
