@@ -61,6 +61,17 @@ function glowMsg(element, t1, t2) {
   }, t2);
 }
 
+// Wrong answer-time's up function / Função resposta errada-acbou o tempo
+function wrongAnswer() {
+  playSound('wrong');
+  $('body').addClass('game-over');
+  setTimeout(() => {
+    $('body').removeClass('game-over');
+  }, 200);
+  $('#level-title').text('Game Over! Press Start to Play');
+  startOver();
+}
+
 // Scoreboard slide in and out / Deslizar placar
 function scoreBoardIn() {
   setTimeout(() => {
@@ -100,13 +111,17 @@ function startOver() {
 }
 
 // Timer function / Função contagem regressiva
-
+let time = 1;
 function timer(t) {
-  let time = t;
-  setInterval(() => {
+  time += t;
+  const intervalId = setInterval(() => {
     time--;
     if (time > 0) {
-      $('.timer-container').append(`<p>${time}</p>`);
+      $('.timer-display').text(`${time}s`);
+    } else {
+      clearInterval(intervalId);
+      $('.timer-display').text(`Time's up!`);
+      wrongAnswer();
     }
   }, 1000);
 }
@@ -166,13 +181,7 @@ function checkAnswer(currentLevel) {
       });
     }
 
-    playSound('wrong');
-    $('body').addClass('game-over');
-    setTimeout(() => {
-      $('body').removeClass('game-over');
-    }, 200);
-    $('#level-title').text('Game Over! Press Start to Play');
-    startOver();
+    wrongAnswer();
   }
 }
 
@@ -269,7 +278,7 @@ function displayModals() {
 
         if (started) {
           nextSequence();
-          timer(15);
+          timer(5);
         }
       }
     });
