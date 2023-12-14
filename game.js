@@ -63,7 +63,7 @@ function glowMsg(element, t1, t2) {
   }, t2);
 }
 
-// Wrong answer-time's up function / Função resposta errada-acbou o tempo
+// Wrong answer-time's up function / Função resposta errada-acabou o tempo
 function wrongAnswer() {
   playSound('wrong');
   $('body').addClass('game-over');
