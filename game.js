@@ -273,7 +273,7 @@ function displayModals() {
 //* Events
 $(window).on('load', () => {
   if (!started) {
-    /* displayStartMsg('#level-title', 2500, 5000); */
+    displayStartMsg('#level-title', 2500, 5000);
   }
 });
 
