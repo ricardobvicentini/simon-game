@@ -6,15 +6,19 @@
   box-sizing: border-box;
 } */
 
+html {
+  overflow: clip;
+}
+
 body {
   /* position: relative; */
-  text-align: center;
-  font-family: 'Press Start 2P', cursive;
   height: 100vh;
   height: 100svh;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
   /* background-color: #011f3f; */
   background-image: linear-gradient(to bottom, #013a77, #011f3f);
-  overflow-y: clip;
+  overflow: clip;
 }
 
 #level-title {

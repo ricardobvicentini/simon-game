@@ -28,26 +28,14 @@ if (storedLeaderBoard) {
 function displayStartMsg(element, t1, t2) {
   startMsgInterval = setInterval(() => {
     if (!displayMsgs) {
-      if (!document.startViewTransition) {
-        $(element).text('Press Start to Play');
-        $('#level-title').addClass(`glow-title`);
-      }
-      document.startViewTransition(() => {
-        $(element).text('Press Start to Play');
-        $('#level-title').addClass(`glow-title`);
-      });
+      $(element).text('Press Start to Play');
+      $('#level-title').addClass(`glow-title`);
     }
   }, t1);
   startMsgClick = setInterval(() => {
     if (!displayMsgs) {
-      if (!document.startViewTransition) {
-        $(element).text('Simon Game');
-        $('#level-title').removeClass('glow-title');
-      }
-      document.startViewTransition(() => {
-        $(element).text('Simon Game');
-        $('#level-title').removeClass('glow-title');
-      });
+      $(element).text('Simon Game');
+      $('#level-title').removeClass('glow-title');
     }
   }, t2);
   glowMsg(element, 2500, 5000);
@@ -117,12 +105,7 @@ function checkAnswer(currentLevel) {
   players = $('#p-num').val();
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     if (userClickedPattern.length === gamePattern.length) {
-      if (!document.startViewTransition) {
-        nextSequence();
-      }
-      document.startViewTransition(() => {
-        nextSequence();
-      });
+      nextSequence();
       repeatSequence(gamePattern);
     }
   } else {
@@ -293,12 +276,7 @@ $('.start-btn').on('click', () => {
     displayModals();
   }
   if (!game) {
-    if (!document.startViewTransition) {
-      nextSequence();
-    }
-    document.startViewTransition(() => {
-      nextSequence();
-    });
+    nextSequence();
   }
 });
 
