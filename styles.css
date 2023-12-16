@@ -6,17 +6,11 @@
   box-sizing: border-box;
 } */
 
-html {
-  overflow: clip;
-}
-
 body {
-  /* position: relative; */
   height: 100vh;
   height: 100svh;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
-  /* background-color: #011f3f; */
   background-image: linear-gradient(to bottom, #013a77, #011f3f);
   overflow: clip;
 }
@@ -27,8 +21,13 @@ body {
   color: #fef2bf;
 }
 
-/* Start */
-
+section {
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .container {
   position: relative;
   --background-simon: linear-gradient(
@@ -45,12 +44,12 @@ body {
   );
   background-image: var(--background-simon);
   width: 50%;
-  /* height: 40%; */
   aspect-ratio: 1/1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   place-items: center;
+  gap: 1cqw;
   margin: 3rem auto;
   border-radius: 50%;
 }
@@ -71,18 +70,17 @@ body {
   width: 27%;
   aspect-ratio: 1/1;
   background-image: var(--background-simon);
+  border: 0.7cqw outset #1a1919;
   border-radius: 50%;
 }
 
 .btn {
   position: relative;
-  width: 90%;
-  height: 90%;
-  margin: 0;
+  width: 87%;
+  /* height: 80%; */
+  aspect-ratio: 1/1;
   border: 1cqw solid #1a1919;
 }
-
-/* End */
 
 .start-btn {
   width: 100px;
@@ -106,69 +104,65 @@ body {
 }
 
 .game-over {
-  /* background-color: red; */
   background-image: linear-gradient(to bottom, red, #960202);
   opacity: 0.8;
 }
 
-/* Start */
 .green {
-  background-color: #008000;
   background-image: radial-gradient(farthest-side at 60% 60%, #80c080, #008000);
   align-self: flex-end;
   justify-self: end;
-  border-top-left-radius: 100%;
+  border: 0.8cqw outset #80c080;
+  border-radius: 100% 8% 0 8%;
 }
 
 .red {
-  background-color: #960202;
   background-image: radial-gradient(farthest-side at 40% 60%, #d59a9a, #960202);
   align-self: flex-end;
   justify-self: start;
-  border-top-right-radius: 100%;
+  border: 0.8cqw outset #d59a9a;
+  border-radius: 8% 100% 8% 0;
 }
 
 .yellow {
-  background-color: #e6e600;
   background-image: radial-gradient(farthest-side at 60% 40%, #ffffb3, #e6e600);
   align-self: flex-start;
   justify-self: end;
-  border-bottom-left-radius: 100%;
+  border: 0.8cqw outset #ffffb3;
+  border-radius: 8% 0 8% 100%;
 }
 
 .blue {
-  background-color: #0000ff;
   background-image: radial-gradient(farthest-side at 40% 40%, #8080ff, #0000ff);
   align-self: flex-start;
   justify-self: start;
-  border-bottom-right-radius: 100%;
+  border: 0.8cqw outset #8080ff;
+  border-radius: 0 8% 100% 8%;
 }
 
 .pressed-green {
   box-shadow: 0 0 20px rgb(4, 253, 4);
-  border: 1cqw solid green;
+  border: 0.8cqw solid green;
   opacity: 0.5;
 }
 
 .pressed-red {
   box-shadow: 0 0 20px red;
-  border: 1cqw solid red;
+  border: 0.8cqw solid red;
   opacity: 0.5;
 }
 
 .pressed-yellow {
   box-shadow: 0 0 20px yellow;
-  border: 1cqw solid yellow;
+  border: 0.8cqw solid yellow;
   opacity: 0.5;
 }
 
 .pressed-blue {
   box-shadow: 0 0 20px blue;
-  border: 1cqw solid blue;
+  border: 0.8cqw solid blue;
   opacity: 0.5;
 }
-
-/* End */
 
 /* Scoreboard */
 .score-board {
@@ -217,7 +211,6 @@ body {
   border-radius: 10px;
   position: absolute;
   left: 50%;
-  /* bottom: 0%; */
   bottom: -100%;
   transform: translateX(-50%);
   transition: all 300ms ease-in-out;
@@ -243,7 +236,6 @@ body {
 }
 
 /*  Overlay - Modals */
-
 .overlay {
   position: absolute;
   display: flex;
@@ -413,8 +405,8 @@ body {
 .hidden {
   display: none;
 }
-/* Medias */
 
+/* Medias */
 @media screen and (width <= 400px) {
   .container {
     width: 90%;
