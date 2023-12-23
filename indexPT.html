@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <h1 id="level-title">Jogo da Memória</h1>
+    <section>
+      <div class="container">
+        <div type="button" id="green" class="btn green"></div>
+        <div type="button" id="red" class="btn red"></div>
+        <div type="button" id="yellow" class="btn yellow"></div>
+        <div type="button" id="blue" class="btn blue"></div>
+      </div>
+      <div class="start-container">
+        <button class="start-btn">Jogar</button>
+      </div>
+    </section>
+
+    <!-- Scoreboard / Leaderboard -->
+    <div class="score-board"></div>
+    <div class="leader-icon-container">
+      <i id="trophy-btn" class="bx bx-trophy"></i>
+    </div>
+    <div class="leader-board">
+      <h5>Ranking</h5>
+      <i id="close-btn" class="bx bx-chevron-down"></i>
+      <i id="reset-btn" class="bx bx-reset"></i>
+    </div>
+
+    <!-- Overlay / Modals -->
+    <div class="overlay hidden">
+      <div class="modal players-num hidden">
+        <label for="p-num"
+          >Quantos acham que podem me vencer? <br />
+          (Jogadores)</label
+        >
+        <input type="number" id="p-num" maxlength="2" autocomplete="off" />
+        <button class="p-num-ok-btn">Ok</button>
+      </div>
+      <div class="modal players-name hidden">
+        <label for="p-name">Insira nome(s)</label>
+        <!-- <input type="text" id="p-name" maxlength="20" autocomplete="off" /> -->
+        <button class="p-name-ok-btn">Ok</button>
+      </div>
+      <div class="modal confirm-reset hidden">
+        <p>Você quer mesmo apagar o ranking?</p>
+        <div class="y-n-btn-container">
+          <button class="y-btn">Sim</button>
+          <button class="n-btn">Não</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="gamePT.js"></script>
+  </body>
+</html>
