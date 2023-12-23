@@ -1,5 +1,5 @@
 # simon-game
-Jogo da Memória (Simon)
+Jogo da Memória (Simon) - Mobile
 
 Inspirado em projeto do curso Web Development Bootcamp - Angela Yu - com atualizações // Inspired by project from Angela Yu's Web Development Bootcamp course with updates
 
