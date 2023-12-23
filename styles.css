@@ -215,6 +215,27 @@ section {
 }
 
 /* Leaderboard */
+.leader-icon-container {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: rgb(239, 239, 239);
+}
+
+#trophy-btn {
+  cursor: pointer;
+}
+
+#trophy-btn:hover {
+  color: aqua;
+  text-shadow: 0 0 5px aqua;
+  scale: 1.1;
+  font-weight: normal;
+}
+
 .leader-board {
   position: relative;
   display: flex;
@@ -251,6 +272,23 @@ section {
   position: absolute;
   bottom: 3.5rem;
   right: 1rem;
+}
+
+/* Languages */
+.lang-container {
+  border: 1px solid red;
+  position: absolute;
+  bottom: 5%;
+  left: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  width: 80px;
+  a {
+    border: 1px solid red;
+    width: 45%;
+    cursor: pointer;
+  }
 }
 
 /*  Overlay - Modals */
@@ -329,27 +367,6 @@ section {
     max-width: 3rem;
     min-height: 2rem;
   }
-}
-
-.leader-icon-container {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translate(-50%);
-  text-align: center;
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  color: rgb(239, 239, 239);
-}
-
-#trophy-btn {
-  cursor: pointer;
-}
-
-#trophy-btn:hover {
-  color: aqua;
-  text-shadow: 0 0 5px aqua;
-  scale: 1.1;
-  font-weight: normal;
 }
 
 #close-btn {

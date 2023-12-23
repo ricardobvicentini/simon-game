@@ -34,7 +34,7 @@ function displayStartMsg(element, t1, t2) {
   }, t1);
   startMsgClick = setInterval(() => {
     if (!displayMsgs) {
-      $(element).text('Simon Game');
+      $(element).text('Jogo da Memória');
       $('#level-title').removeClass('glow-title');
     }
   }, t2);
