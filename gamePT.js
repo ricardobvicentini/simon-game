@@ -143,7 +143,9 @@ function checkAnswer(currentLevel) {
         setLocalStorage();
       }
 
-      $('.score-board').append(`<button class='retry-btn'>Retry</button>`);
+      $('.score-board').append(
+        `<button class='retry-btn'>Tente novamente</button>`
+      );
       glowMsg('.retry-btn', 1000, 5000);
       $('.retry-btn').on('click', () => {
         location.reload(true);
